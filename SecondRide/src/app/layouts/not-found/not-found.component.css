@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 7em 7em;
+}
+
+.text-container {
+    width: 750px;
+}
+
+.text-container h1 {
+    font-size: 5em;
+}
+
+.text-container p {
+    font-size: 35px;
+}
+
+.text-container .home-btn {
+    cursor: pointer;
+    margin-top: 3em;
+    padding: 0.8em 2em;
+    outline: none;
+    background-color: #000;
+    border: 1px solid #000;
+    border-radius: 20px;
+    color: #fff;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+}
+
+.text-container .home-btn:hover {
+    background-color: transparent;
+    color: #000;
+}
+
+.container img {
+    display: block;
+    width: 30%;
+    margin: 7em auto;
+}

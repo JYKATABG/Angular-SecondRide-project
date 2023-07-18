@@ -1,0 +1,112 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    margin: 8em 8em;
+}
+
+.container .contact-heading {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    flex-direction: column;
+    gap: 1em;
+    margin-right: 5em;
+    background-color: #031d38;
+    border-radius: 10px;
+    padding: 2em;
+    height: 420px;
+    color: #fff;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.4);
+}
+
+.contact-heading {
+    text-align: left;
+}
+
+.container .contact-heading h1 {
+    font-size: 40px;
+    font-family: Helvetica, sans-serif;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 10px;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.container .contact-heading p {
+    max-width: 40em;
+    text-align: justify;
+    font-size: 20px;
+    padding-top: 2em;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    padding: 2em;
+    width: 550px;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.container .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+}
+
+.input-container .input-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container .input-data label {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.input-container .input-data input {
+    width: 215px;
+    padding: 15px;
+    outline: none;
+    font-size: 17px;
+}
+
+.container .textarea-data {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.container .textarea-data textarea {
+    resize: none;
+    outline: none;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.container .textarea-data label {
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
+.submit-btn {
+    cursor: pointer;
+    padding: 0.5em 2em;
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    font-size: 18px;
+    transition: 0.3s;
+    background-color: #0065fe;
+    color: #fff;
+}
+
+.submit-btn:hover {
+    background-color: #262626;
+}

@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2em;
+}
+
+.container .header-img {
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.3);
+    padding: 1em;
+    width: 80%;
+    text-align: center;
+}
+
+.text-container {
+    margin: 5em 0 2em 0;
+    background-color: #262626;
+    color: #fff;
+    width: 90%;
+    padding: 1em;
+}
+
+.text-container h1 {
+    text-align: center;
+    padding-bottom: 2em;
+    font-size: 40px;
+}
+
+.all-parahgraphs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7em;
+}
+
+.single-paragraph h2 {
+    text-align: center;
+    padding: 1em;
+}
+
+.single-paragraph h2::after {
+    display: block;
+    content: "";
+    width: 5em;
+    margin: 1em auto;
+    height: 3px;
+    background-color: #fff;
+}
+
+.single-paragraph p {
+    max-width: 40em;
+    text-align: justify;
+    padding-bottom: 1em;
+    font-size: 18px;
+}

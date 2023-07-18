@@ -1,0 +1,106 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin: 7em auto;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 1em;
+    height: 450px;
+    width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.3);
+}
+
+.container .profile-img {
+    margin: 2em 0;
+    margin: -70px 0 2em 0;
+}
+
+.container .profile-img i {
+    font-size: 35px;
+    line-height: 30px;
+    color: #fff;
+    background-color: gray;
+    border: 1px solid gray;
+    padding: 1em;
+    border-radius: 50%;
+}
+
+.container h1 {
+    font-size: 40px;
+    padding-bottom: 0.5em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+} */
+
+form .input-data {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.input-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.input-data i {
+    padding: 5px;
+    color: gray;
+}
+
+.input-data input {
+    width: 18em;
+    border: none;
+    outline: none;
+    font-size: 18px;
+}
+
+form .login-form-btn {
+    display: block;
+    cursor: pointer;
+    margin: auto;
+    padding: 0.8em 3em;
+    margin-top: 1em;
+    border-radius: 10px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    background-color: gray;
+    color: #fff;
+    transition: 0.3s;
+}
+
+form .login-form-btn:hover {
+    background-color: transparent;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.container p {
+    padding-top: 30px;
+}
+
+.container p a:hover {
+    text-decoration: underline;
+}
+
+.container p a {
+    text-decoration: none;
+}
+
+form .error-msg p {
+    padding: 5px;
+    color: red;
+}

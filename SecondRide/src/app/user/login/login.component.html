@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="profile-img">
+        <i class="fa-regular fa-user"></i>
+    </div>
+    <h1>Log in</h1>
+    <form>
+        <div class="input-data">
+            <label for="email"><i class="fa-solid fa-envelope"></i></label>
+            <input type="email" name="email" id="email" placeholder="Email">
+        </div>
+        <!-- Error messages -->
+        <div class="error-msg">
+            <p>Invalid email!</p>
+            <!-- <p>Email is required!</p> -->
+        </div>
+        <div class="input-data">
+            <label for="password"><i class="fa-solid fa-lock"></i></label>
+            <input type="password" name="password" id="password" placeholder="Password">
+        </div>
+        <!-- Error messages -->
+        <div class="error-msg">
+            <p>Invalid password!</p>
+            <!-- <p>Password is required!</p> -->
+        </div>
+        <button class="login-form-btn">Login</button>
+    </form>
+    <p>Don't have an account? <a routerLink="/register">Sign up</a></p>
+</div>

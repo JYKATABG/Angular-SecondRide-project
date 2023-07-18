@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "secondride-angular": {
+      "hosting": {
+        "SecondRide": [
+          "secondride-angular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "secondride-angular"
+  }
+}
