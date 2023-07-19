@@ -3,35 +3,56 @@
         <i class="fa-regular fa-user"></i>
     </div>
     <h1>Register</h1>
-    <form>
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
         <div class="input-data">
             <label for="username"><i class="fa-solid fa-user"></i></label>
-            <input type="text" name="username" id="username" placeholder="Username">
+            <input type="text" name="username" id="username" placeholder="Username" #inputUsername="ngModel" ngModel
+                required>
         </div>
         <!-- Error messages -->
-        <div class="error-msg">
-            <p>Invalid username</p>
-            <!-- <p>Username is required!</p> -->
-        </div>
+        <ng-container *ngIf="inputUsername.touched">
+            <div class="error-msg">
+                <!-- <p>Invalid username</p> -->
+                <p *ngIf="inputUsername.errors?.['required']">Username is required!</p>
+            </div>
+        </ng-container>
         <div class="input-data">
             <label for="email"><i class="fa-solid fa-envelope"></i></label>
-            <input type="email" name="email" id="email" placeholder="Email">
+            <input type="email" name="email" id="email" placeholder="Email" #inputEmail="ngModel" ngModel required>
         </div>
         <!-- Error messages -->
-        <div class="error-msg">
-            <p>Invalid email!</p>
-            <!-- <p>Email is required!</p> -->
-        </div>
+        <ng-container *ngIf="inputEmail.touched">
+            <div class="error-msg">
+                <!-- <p>Invalid email!</p> -->
+                <p *ngIf="inputEmail.errors?.['required']">Email is required!</p>
+            </div>
+        </ng-container>
         <div class="input-data">
             <label for="password"><i class="fa-solid fa-lock"></i></label>
-            <input type="password" name="password" id="password" placeholder="Password">
+            <input type="password" name="password" id="password" placeholder="Password" #inputPassword="ngModel" ngModel
+                required>
         </div>
         <!-- Error messages -->
-        <div class="error-msg">
-            <!-- <p>Invalid password!</p> -->
-            <p>Password is required!</p>
+        <ng-container *ngIf="inputPassword.touched">
+            <div class="error-msg">
+                <!-- <p>Invalid password!</p> -->
+                <p *ngIf="inputPassword.errors?.['required']">Password is required!</p>
+            </div>
+        </ng-container>
+        <div class="input-data">
+            <label for="re-password"><i class="fa-solid fa-lock"></i></label>
+            <input type="password" name="re-password" id="re-password" placeholder="Repeat Password"
+                #inputRePassword="ngModel" ngModel required>
         </div>
+        <!-- Error messages -->
+        <ng-container *ngIf="inputRePassword.touched">
+            <div class="error-msg">
+                <!-- <p>Invalid password!</p> -->
+                <p *ngIf="inputRePassword.errors?.['required']">Repeat Password is required!</p>
+            </div>
+        </ng-container>
         <button class="login-form-btn">Register</button>
     </form>
     <p>Already have an account? <a routerLink="/login">Log In</a></p>
 </div>
+{{registerForm.value | json}}

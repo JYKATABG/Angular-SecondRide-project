@@ -3,10 +3,10 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    margin: 7em auto;
+    margin: 4em auto;
     background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
     padding: 1em;
-    height: 600px;
+    height: 700px;
     width: 500px;
     border-radius: 15px;
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.3);

@@ -25,10 +25,6 @@ const routes: Routes = [
     component: ContactUsComponent,
   },
   {
-    path: 'catalog',
-    component: OffersCatalogComponent,
-  },
-  {
     path: '**',
     component: NotFoundComponent,
   },
