@@ -15,6 +15,7 @@ import { ContactUsComponent } from './layouts/contact-us/contact-us.component';
 import { NotFoundComponent } from './layouts/not-found/not-found.component';
 import { OffersCatalogComponent } from './offers-catalog/offers-catalog.component';
 import { OfferModule } from './offer/offer.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { OfferModule } from './offer/offer.module';
     CoreModule,
     UserModule,
     OfferModule,
+    SharedModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

@@ -17,11 +17,11 @@ const routes: Routes = [
         path: ':offerId',
         component: CurrentOfferComponent,
       },
-      {
-        path: 'add-offer',
-        component: NewOfferComponent,
-      },
     ],
+  },
+  {
+    path: 'add-offer',
+    component: NewOfferComponent,
   },
 ];
 
