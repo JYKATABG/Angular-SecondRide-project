@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     margin: 4em auto;
     background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);

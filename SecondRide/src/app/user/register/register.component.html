@@ -54,8 +54,10 @@
                 <p *ngIf="inputRePassword.errors?.['required']">Repeat Password is required!</p>
             </div>
         </ng-container>
-        <button class="login-form-btn">Register</button>
+        <div class="bottom-part">
+            <button class="login-form-btn">Register</button>
+            <p>Already have an account? <a routerLink="/login">Log In</a></p>
+        </div>
     </form>
-    <p>Already have an account? <a routerLink="/login">Log In</a></p>
 </div>
 {{registerForm.value | json}}

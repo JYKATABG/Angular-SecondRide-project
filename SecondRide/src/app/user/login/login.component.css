@@ -1,12 +1,12 @@
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     margin: 7em auto;
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     padding: 1em;
-    height: 450px;
+    height: 500px;
     width: 500px;
     border-radius: 15px;
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.3);
@@ -34,18 +34,25 @@
     text-transform: uppercase;
 }
 
-/* form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 40px;
-} */
-
 form .input-data {
     background-color: #fff;
     padding: 10px;
     border-radius: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form .inputs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .input-data {
