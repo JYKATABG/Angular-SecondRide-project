@@ -7,47 +7,50 @@
         <div class="input-data">
             <label for="username"><i class="fa-solid fa-user"></i></label>
             <input type="text" name="username" id="username" placeholder="Username" #inputUsername="ngModel" ngModel
-                required>
+                required minlength="3" maxlength="20">
         </div>
         <!-- Error messages -->
         <ng-container *ngIf="inputUsername.touched">
             <div class="error-msg">
-                <!-- <p>Invalid username</p> -->
+                <p *ngIf="inputUsername.errors?.['minlength']">Invalid username
+                </p>
                 <p *ngIf="inputUsername.errors?.['required']">Username is required!</p>
             </div>
         </ng-container>
         <div class="input-data">
             <label for="email"><i class="fa-solid fa-envelope"></i></label>
-            <input type="email" name="email" id="email" placeholder="Email" #inputEmail="ngModel" ngModel required>
+            <input type="email" name="email" id="email" placeholder="Email" #inputEmail="ngModel" ngModel required
+                appEmail>
         </div>
         <!-- Error messages -->
         <ng-container *ngIf="inputEmail.touched">
             <div class="error-msg">
-                <!-- <p>Invalid email!</p> -->
                 <p *ngIf="inputEmail.errors?.['required']">Email is required!</p>
+                <p *ngIf="inputEmail.errors?.['emailValidator']">Invalid email!</p>
             </div>
         </ng-container>
+
         <div class="input-data">
             <label for="password"><i class="fa-solid fa-lock"></i></label>
             <input type="password" name="password" id="password" placeholder="Password" #inputPassword="ngModel" ngModel
-                required>
+                required minlength="6" maxlength="12">
         </div>
         <!-- Error messages -->
         <ng-container *ngIf="inputPassword.touched">
             <div class="error-msg">
-                <!-- <p>Invalid password!</p> -->
+                <p *ngIf="inputPassword.errors?.['minlength']">Invalid password!</p>
                 <p *ngIf="inputPassword.errors?.['required']">Password is required!</p>
             </div>
         </ng-container>
         <div class="input-data">
             <label for="re-password"><i class="fa-solid fa-lock"></i></label>
             <input type="password" name="re-password" id="re-password" placeholder="Repeat Password"
-                #inputRePassword="ngModel" ngModel required>
+                #inputRePassword="ngModel" ngModel required minlength="6" maxlength="12">
         </div>
         <!-- Error messages -->
         <ng-container *ngIf="inputRePassword.touched">
             <div class="error-msg">
-                <!-- <p>Invalid password!</p> -->
+                <p *ngIf="inputRePassword.errors?.['minlength']">Invalid re-password!</p>
                 <p *ngIf="inputRePassword.errors?.['required']">Repeat Password is required!</p>
             </div>
         </ng-container>
