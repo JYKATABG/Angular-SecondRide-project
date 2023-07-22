@@ -89,18 +89,26 @@
 
 .typography {
     padding: 15px 0 10px 1rem;
-    /* text-align: center; */
-
 }
+
 
 .card-info {
     padding: 0 1rem 0;
     margin: auto;
 }
 
+.card-info .info-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
 .card-footer {
     padding: 10px 1rem 1rem;
     position: absolute;
     bottom: 0;
     left: 0;
+    font-weight: bold;
 }

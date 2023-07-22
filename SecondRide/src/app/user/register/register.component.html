@@ -38,20 +38,21 @@
         <!-- Error messages -->
         <ng-container *ngIf="inputPassword.touched">
             <div class="error-msg">
-                <p *ngIf="inputPassword.errors?.['minlength']">Invalid password!</p>
+                <p *ngIf="inputPassword.errors?.['minlength']">Password should be at least 6 characters!</p>
                 <p *ngIf="inputPassword.errors?.['required']">Password is required!</p>
             </div>
         </ng-container>
         <div class="input-data">
-            <label for="re-password"><i class="fa-solid fa-lock"></i></label>
-            <input type="password" name="re-password" id="re-password" placeholder="Repeat Password"
-                #inputRePassword="ngModel" ngModel required minlength="6" maxlength="12">
+            <label for="rePassword"><i class="fa-solid fa-lock"></i></label>
+            <input type="password" name="rePassword" id="rePassword" placeholder="Repeat Password"
+                #inputRePassword="ngModel" ngModel required minlength="6" maxlength="12"
+                [appMatchPasswords]="inputPassword.value">
         </div>
         <!-- Error messages -->
         <ng-container *ngIf="inputRePassword.touched">
             <div class="error-msg">
-                <p *ngIf="inputRePassword.errors?.['minlength']">Invalid re-password!</p>
                 <p *ngIf="inputRePassword.errors?.['required']">Repeat Password is required!</p>
+                <p *ngIf="inputRePassword.errors?.['matchPasswordsValidator']">Passwords doesn't match</p>
             </div>
         </ng-container>
         <div class="bottom-part">
@@ -60,4 +61,3 @@
         </div>
     </form>
 </div>
-{{registerForm.value | json}}
