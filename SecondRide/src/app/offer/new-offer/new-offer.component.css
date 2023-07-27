@@ -23,6 +23,7 @@ form {
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.3);
     padding: 2em;
     width: 550px;
+    margin: 2em 0;
     border: 1px solid #262626;
     border-radius: 10px;
     flex-wrap: wrap;
@@ -85,7 +86,7 @@ form .all-selects {
 
 .description h2 {
     text-align: center;
-    padding-bottom: 20px;
+    padding: 1.5em 0 1.5em 0;
 }
 
 .description textarea {
@@ -99,10 +100,12 @@ form .all-selects {
 }
 
 .create-btn {
+    display: block;
     cursor: pointer;
+    text-align: center;
     padding: 0.8em 4em;
-    width: 20%;
-    margin-bottom: 3em;
+    width: 80%;
+    margin: 2em auto;
     outline: none;
     border: none;
     border-radius: 15px;

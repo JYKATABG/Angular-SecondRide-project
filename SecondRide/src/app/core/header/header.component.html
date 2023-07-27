@@ -1,29 +1,38 @@
 <header>
-    <div class="logo">
-        <img src="../../../assets/SecondRide-removebg-preview.png" alt="logo">
-    </div>
-    <nav>
-        <ul>
-            <li><a routerLink="/home">Home</a></li>
-            <li><a routerLink="/about">About</a></li>
-            <li><a routerLink="/offers">Catalog</a></li>
-            <li><a routerLink="/contact-us">Contact Us</a></li>
-        </ul>
-    </nav>
-    <!-- GUEST LINKS -->
-    <div class="guest-links">
-        <ul>
-            <li><a routerLink="/login" class="login-btn">Login</a></li>
-            <li><a routerLink="/register" class="register-btn">Register</a></li>
-        </ul>
-    </div>
-    <!-- USER LINKS -->
-    <!-- <div class="user-links">
-        <ul>
-            <li><a href="#" class="user-btn"><i class="fa-solid fa-user"></i></a></li>
-            <li><a routerLink="/add-offer" class="new-offer-btn"><i class="fa-solid fa-plus"></i></a></li>
-            <li><a href="#" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
-        </ul>
-    </div> -->
-
+  <div class="logo">
+    <img src="../../../assets/SecondRide-removebg-preview.png" alt="logo" />
+  </div>
+  <nav>
+    <ul>
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/about">About</a></li>
+      <li><a routerLink="/offers">Catalog</a></li>
+      <li><a routerLink="/contact-us">Contact Us</a></li>
+    </ul>
+  </nav>
+  <!-- GUEST LINKS -->
+  <div class="guest-links" *ngIf="!isLoggedIn">
+    <ul>
+      <li><a routerLink="/login" class="login-btn">Login</a></li>
+      <li><a routerLink="/register" class="register-btn">Register</a></li>
+    </ul>
+  </div>
+  <!-- USER LINKS -->
+  <div class="user-links" *ngIf="isLoggedIn">
+    <ul>
+      <li>
+        <a href="#" class="user-btn"><i class="fa-solid fa-user"></i></a>
+      </li>
+      <li>
+        <a routerLink="/add-offer" class="new-offer-btn"
+          ><i class="fa-solid fa-plus"></i
+        ></a>
+      </li>
+      <li>
+        <a href="#" (click)="logout()" class="logout-btn"
+          ><i class="fa-solid fa-arrow-right-from-bracket"></i
+        ></a>
+      </li>
+    </ul>
+  </div>
 </header>

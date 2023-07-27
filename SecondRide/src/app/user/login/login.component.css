@@ -6,7 +6,7 @@
     margin: 7em auto;
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     padding: 1em;
-    height: 500px;
+    height: 520px;
     width: 500px;
     border-radius: 15px;
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.3);
@@ -110,4 +110,9 @@ form .login-form-btn:hover {
 form .error-msg p {
     padding: 5px;
     color: red;
+}
+
+.error-msg .invalid-user {
+    margin: 10px 1em;
+    display: block;
 }

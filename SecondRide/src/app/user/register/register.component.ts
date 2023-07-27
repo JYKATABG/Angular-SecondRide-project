@@ -4,8 +4,11 @@ import {
   Auth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  getAuth,
 } from '@angular/fire/auth';
 import { matchPasswordsValidator } from 'src/app/shared/validators/match-passwords-validator';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +16,11 @@ import { matchPasswordsValidator } from 'src/app/shared/validators/match-passwor
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(public auth: Auth) {}
+  constructor(
+    public auth: Auth,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
   register(form: NgForm): void {
     if (form.invalid) {
@@ -28,15 +35,7 @@ export class RegisterComponent {
 
     matchPasswordsValidator(value.password);
 
-    console.log(value);
-
-    // createUserWithEmailAndPassword(this.auth, value.email, value.password)
-    //   .then((userCredential) => {
-    //     const user = userCredential;
-    //     console.log(user);
-
-    //     console.log('User Created');
-    //   })
-    //   .catch((err) => console.log(err));
+    this.userService.register(value.email, value.password);
+    this.router.navigate(['/home']);
   }
 }
