@@ -1,0 +1,191 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.back-btn {
+    cursor: pointer;
+    align-self: flex-start;
+    margin: 2em 0 0 4em;
+    text-decoration: none;
+    color: #fff;
+    background-color: #262626;
+    padding: 0.8em 2em;
+    border-radius: 10px;
+}
+
+.back-btn i {
+    padding-right: 10px;
+}
+
+.container .heading {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    gap: 10em;
+}
+
+.heading .price {
+    padding: 10px;
+    border-radius: 15px;
+    color: #fff;
+    background-color: #262626;
+}
+
+.container .offer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5em;
+}
+
+.offer-container .media {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.offer-container .media img {
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.4);
+}
+
+.offer-information .car-information {
+    margin: 10px 0;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 10px 0;
+}
+
+.offer-information .car-information {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 18px;
+}
+
+.right-side .bold-info {
+    font-weight: bold;
+}
+
+.description-container {
+    margin: 1em 0 2em 0;
+}
+
+.description-container h3 {
+    padding: 5px 0 10px 0;
+}
+
+.description-container .divider {
+    margin: 10px 0;
+}
+
+.description-container p {
+    max-width: 45em;
+}
+
+.owner-info {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border: 1px solid #262626;
+    padding: 1.5em 3em;
+    border-radius: 15px;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.3);
+}
+
+.owner-info i {
+    padding-right: 10px;
+}
+
+.owner-info .city i,
+.owner-info .phone-number i {
+    font-size: 30px;
+}
+
+.owner-info .phone-number {
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.owner-info .phone-number:hover {
+    background-color: #8dbe35;
+    padding: 10px;
+    color: #fff;
+}
+
+.phone-number i {
+    align-self: flex-start;
+}
+
+.divider {
+    border-top: 1px solid #262626;
+    margin: 10px 0;
+}
+
+.owner-info .save-button {
+    cursor: pointer;
+    padding: 10px 0;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    background-color: #262626;
+    color: #fff;
+    font-size: 20px;
+}
+
+.owner-info .save-button i:hover {
+    color: orange;
+}
+
+/* ACTIVATE AFTER CLICK */
+/* .owner-info .save-button .saved {
+    color: orange;
+} */
+
+.owner-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.owner-buttons .edit-btn {
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: orangered;
+    border: 1px solid orangered;
+    outline: none;
+    font-size: 19px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.owner-buttons .edit-btn:hover {
+    border: 1px solid #000;
+    transform: scale(1.1);
+    color: #fff;
+}
+
+.owner-buttons .delete-btn {
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: red;
+    border: 1px solid red;
+    outline: none;
+    font-size: 19px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.owner-buttons .delete-btn:hover {
+    border: 1px solid #000;
+    color: #fff;
+    transform: scale(1.1);
+}

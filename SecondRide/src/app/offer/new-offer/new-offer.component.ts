@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { dateValidator } from 'src/app/shared/validators/date-validator';
+import { OfferService } from '../offer.service';
 
 @Component({
   selector: 'app-new-offer',
@@ -8,6 +9,8 @@ import { dateValidator } from 'src/app/shared/validators/date-validator';
   styleUrls: ['./new-offer.component.css'],
 })
 export class NewOfferComponent {
+  isInvalid: boolean = false;
+
   form = this.fb.group(
     {
       carImage: ['', [Validators.required]],
@@ -38,12 +41,16 @@ export class NewOfferComponent {
     }
   );
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private offerService: OfferService) {}
 
-  register(): void {
+  createOffer() {
     console.log(this.form.value);
     if (this.form.invalid) {
-      return alert('Form is invalid');
+      this.isInvalid = true;
+      return;
     }
+
+    this.offerService.createNewOffer(this.form.value);
+    this.form.reset();
   }
 }

@@ -4,7 +4,7 @@
     <div class="divider"></div>
   </div>
 
-  <form [formGroup]="form" (ngSubmit)="register()">
+  <form [formGroup]="form" (ngSubmit)="createOffer()">
     <div class="input-row">
       <label for="carImage">Снимка на автомобила</label>
       <input
@@ -143,9 +143,7 @@
           <p *ngIf="form.get('horsepower')?.errors?.['min']">
             Horsepower should be more than 0
           </p>
-          <p
-            *ngIf="form.get('phone')?.errors?.['maxlength']?.['requiredLength']"
-          >
+          <p *ngIf="form.get('horsepower')?.errors?.['maxlength']">
             Horsepower should be max 4 numbers
           </p>
         </div>
@@ -204,7 +202,7 @@
           <p *ngIf="form.get('color')?.errors?.['required']">
             Color is required
           </p>
-          <p>Color should be text</p>
+          <!-- <p>Color should be text</p> -->
         </div>
       </ng-container>
     </div>
@@ -240,10 +238,10 @@
         <label for="fuel-type">Вид гориво</label>
         <select name="fuelTypes" id="fuelTypes" formControlName="fuelTypes">
           <option selected disabled></option>
-          <option value="Diesel">Дизел</option>
-          <option value="Petrol">Бензин</option>
-          <option value="Gas/Petrol">Газ/Бензин</option>
-          <option value="Hybrid">Хибрид</option>
+          <option value="Дизел">Дизел</option>
+          <option value="Бензин">Бензин</option>
+          <option value="Газ/Бензин">Газ/Бензин</option>
+          <option value="Хибрид">Хибрид</option>
         </select>
       </div>
 
@@ -255,8 +253,8 @@
           formControlName="gearboxTypes"
         >
           <option selected disabled></option>
-          <option value="Manual">Ръчна</option>
-          <option value="Automatic">Автоматична</option>
+          <option value="Ръчна">Ръчна</option>
+          <option value="Автоматична">Автоматична</option>
         </select>
       </div>
       <div class="input-row">
@@ -267,11 +265,11 @@
           formControlName="categoryTypes"
         >
           <option selected disabled></option>
-          <option value="Sedan">Седан</option>
-          <option value="Hatchback">Хечбек</option>
-          <option value="Coupe">Купе</option>
-          <option value="Kombi">Комби</option>
-          <option value="SUV">Джип</option>
+          <option value="Седан">Седан</option>
+          <option value="Хечбек">Хечбек</option>
+          <option value="Купе">Купе</option>
+          <option value="Комби">Комби</option>
+          <option value="Джип">Джип</option>
         </select>
       </div>
 
@@ -284,10 +282,6 @@
         </select>
       </div>
     </div>
-    <!-- ERRORS -->
-    <!-- <div class="select-errors">
-            <p>All fields are required</p>
-        </div> -->
 
     <div class="description">
       <h2>Description</h2>
@@ -298,6 +292,11 @@
         rows="15"
         formControlName="descriptionArea"
       ></textarea>
+    </div>
+
+    <!-- ERRORS -->
+    <div class="select-errors" *ngIf="isInvalid">
+      <p>All fields are required</p>
     </div>
 
     <button class="create-btn">Create</button>

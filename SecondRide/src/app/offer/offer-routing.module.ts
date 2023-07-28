@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OffersCatalogComponent } from '../offers-catalog/offers-catalog.component';
 import { CurrentOfferComponent } from './current-offer/current-offer.component';
 import { NewOfferComponent } from './new-offer/new-offer.component';
+import { AuthActivate } from '../core/guards/auth.activate';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
   {
     path: 'add-offer',
     component: NewOfferComponent,
+    // canActivate: [AuthActivate],
   },
 ];
 
