@@ -50,7 +50,7 @@ export class NewOfferComponent {
       return;
     }
 
-    this.offerService.createNewOffer(this.form.value);
+    this.offerService.createNewOffer(this.form.value)
     this.form.reset();
   }
 }

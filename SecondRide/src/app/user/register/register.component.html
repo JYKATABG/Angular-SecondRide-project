@@ -5,19 +5,19 @@
   <h1>Register</h1>
   <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
     <!-- USERNAME DATA -->
-    <!-- <div class="input-data">
+    <div class="input-data">
             <label for="username"><i class="fa-solid fa-user"></i></label>
             <input type="text" name="username" id="username" placeholder="Username" #inputUsername="ngModel" ngModel
                 required minlength="3" maxlength="20">
-        </div> -->
+        </div>
     <!-- Error messages -->
-    <!-- <ng-container *ngIf="inputUsername.touched">
+    <ng-container *ngIf="inputUsername.touched">
             <div class="error-msg">
                 <p *ngIf="inputUsername.errors?.['minlength']">Invalid username
                 </p>
                 <p *ngIf="inputUsername.errors?.['required']">Username is required!</p>
             </div>
-        </ng-container> -->
+        </ng-container>
     <div class="input-data">
       <label for="email"><i class="fa-solid fa-envelope"></i></label>
       <input

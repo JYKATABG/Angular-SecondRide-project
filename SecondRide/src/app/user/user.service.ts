@@ -3,6 +3,7 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from '@angular/fire/auth';
 import { User } from '../types/user';
 import { Router } from '@angular/router';
@@ -28,10 +29,13 @@ export class UserService {
     return !!localStorage.getItem(this.USER_KEY);
   }
 
-  register(email: string, password: string) {
+  register(email: string, password: string, username: string) {
     createUserWithEmailAndPassword(this.auth, email, password)
       .then((result) => {
+        const userCredential = result
+        updateProfile(userCredential.user, {displayName: username})
         localStorage.setItem(this.USER_KEY, JSON.stringify(result.user));
+        
       })
       .catch((err) => {
         console.log(err);

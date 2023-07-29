@@ -35,7 +35,7 @@ export class RegisterComponent {
 
     matchPasswordsValidator(value.password);
 
-    this.userService.register(value.email, value.password);
+    this.userService.register(value.email, value.password, value.username);
     this.router.navigate(['/home']);
   }
 }
