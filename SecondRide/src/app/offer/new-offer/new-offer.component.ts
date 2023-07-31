@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { dateValidator } from 'src/app/shared/validators/date-validator';
 import { OfferService } from '../offer.service';
+import { getAuth } from '@firebase/auth';
 
 @Component({
   selector: 'app-new-offer',
@@ -42,15 +43,56 @@ export class NewOfferComponent {
   );
 
   constructor(private fb: FormBuilder, private offerService: OfferService) {}
+  auth = getAuth();
+  user = this.auth.currentUser;
 
   createOffer() {
     console.log(this.form.value);
+
     if (this.form.invalid) {
       this.isInvalid = true;
       return;
     }
 
-    this.offerService.createNewOffer(this.form.value)
+    const {
+      carImage,
+      createdDate,
+      brand,
+      model,
+      engine,
+      price,
+      horsepower,
+      mileage,
+      location,
+      color,
+      phone,
+      fuelTypes,
+      gearboxTypes,
+      categoryTypes,
+      doorsTypes,
+      descriptionArea,
+    } = this.form.value;
+
+    this.offerService.createNewOffer({
+      carImage,
+      createdDate,
+      brand,
+      model,
+      engine,
+      price,
+      horsepower,
+      mileage,
+      location,
+      color,
+      phone,
+      fuelTypes,
+      gearboxTypes,
+      categoryTypes,
+      doorsTypes,
+      descriptionArea,
+      _ownerId: this.user?.uid,
+      favourites: [],
+    });
     this.form.reset();
   }
 }

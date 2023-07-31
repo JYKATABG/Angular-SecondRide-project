@@ -21,7 +21,7 @@ export class OfferService {
   }
 
   getAllOffers() {
-    return this.httpClient.get<Offer[]>(this.API_LINK);
+    return this.httpClient.get<Offer[]>(`${this.API_LINK}.json`);
   }
 
   getArrayValues(offers: Offer[], ids: string[]): Offer[] {

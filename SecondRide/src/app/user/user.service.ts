@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   Auth,
+  UserCredential,
   createUserWithEmailAndPassword,
+  getAuth,
   signInWithEmailAndPassword,
   updateProfile,
 } from '@angular/fire/auth';
@@ -32,10 +34,9 @@ export class UserService {
   register(email: string, password: string, username: string) {
     createUserWithEmailAndPassword(this.auth, email, password)
       .then((result) => {
-        const userCredential = result
-        updateProfile(userCredential.user, {displayName: username})
+        const userCredential = result;
+        updateProfile(userCredential.user, { displayName: username });
         localStorage.setItem(this.USER_KEY, JSON.stringify(result.user));
-        
       })
       .catch((err) => {
         console.log(err);

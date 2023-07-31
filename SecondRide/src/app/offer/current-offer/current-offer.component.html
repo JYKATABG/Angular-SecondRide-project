@@ -47,14 +47,14 @@
       <h3 class="phone-number"><i class="fa-solid fa-mobile"></i>0{{offerDetails?.phone}}</h3>
       <div class="divider"></div>
       <!-- IF USER ISN'T OWNER OF THE OFFER -->
-      <button class="save-button">
+      <button class="save-button" *ngIf="!isOwner">
         <i class="fa-solid fa-bookmark saved"></i>Save Offer
       </button>
       <!-- IF USER IS OWNER OF THE OFFER -->
-      <!-- <div class="owner-buttons">
-                <button class="edit-btn"><i class="fa-solid fa-pen"></i>Edit</button>
-                <button class="delete-btn"><i class="fa-solid fa-trash-can"></i>Delete offer</button>
-            </div> -->
+      <div class="owner-buttons" *ngIf="isOwner">
+        <button class="edit-btn"><i class="fa-solid fa-pen"></i>Edit</button>
+        <button class="delete-btn"><i class="fa-solid fa-trash-can"></i>Delete offer</button>
+      </div>
     </div>
   </div>
 </div>

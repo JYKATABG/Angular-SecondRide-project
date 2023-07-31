@@ -1,0 +1,225 @@
+/* PROFILE */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    margin-bottom: 5em;
+}
+
+.user-info .username {
+    text-align: center;
+}
+
+.left-section .user-avatar {
+    background-color: #262626;
+}
+
+.user-avatar {
+    text-align: center;
+    padding: 1em 0;
+    border-radius: 15px;
+    width: 750px;
+    margin-top: 3em;
+    color: #fff;
+}
+
+.user-avatar .username {
+    padding-top: 1em;
+}
+
+.user-avatar .user-offers-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    margin: 1em 0;
+}
+
+.user-offers-details p {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.left-container .user-avatar img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.user-avatar img {
+    width: 250px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.user-info {
+    width: 750px;
+    height: 354px;
+}
+
+.social-media div {
+    border-bottom: 1px solid gray;
+    padding: 5px 10px;
+}
+
+.social-media .github,
+.social-media .instagram,
+.social-media .twitter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-media .twitter i {
+    color: lightblue;
+}
+
+.social-media .instagram i {
+    color: lightcoral;
+}
+
+.social-media i {
+    margin-right: 10px;
+    padding-bottom: 10px;
+    font-size: 25px;
+}
+
+.edit-btn {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    color: #fff;
+    color: #000;
+    transition: 0.3s;
+    margin-top: auto;
+}
+
+.edit-btn:hover {
+    opacity: 0.6;
+}
+
+.user-info .social-media {
+    width: 750px;
+    height: 354px;
+    margin: 1em 0 5em 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    gap: 1em;
+    font-size: 20px;
+    border-radius: 15px;
+    background-color: #262626;
+    color: #fff;
+}
+
+.offers-container {
+    display: grid;
+    margin: 1em 2em 0 0;
+    gap: 10px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: auto;
+}
+
+.user-offers {
+    margin: 1em 0 5em 0;
+    background-color: #262626;
+    padding: 1em;
+    border-radius: 15px;
+    width: 900px;
+}
+
+.user-offers h1 {
+    text-align: center;
+    color: #fff;
+    border-bottom: 2px solid #fff;
+    padding: 10px;
+}
+
+.user-offers .offers-container .offer {
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.1);
+    width: 180px;
+    height: 200px;
+    transition: 0.3s;
+    margin: 0 1.5em 2em 1.5em;
+    font-size: 15px;
+}
+
+.card-primary,
+.card-heading,
+.typography,
+.card-footer {
+    padding: 1px 0 0 5px;
+}
+
+.offers-container .offer .media img {
+    width: 180px;
+}
+
+.offer .card-price {
+    font-size: 20px;
+}
+
+.right-section {
+    height: 832px;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-section .user-details {
+    background-color: #262626;
+    width: 900px;
+    height: 428px;
+    border-radius: 15px;
+    padding: 1.5em;
+    margin-top: 2.4em;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.user-details div {
+    border-bottom: 2px solid gray;
+    padding: 5px;
+}
+
+.user-details div p {
+    font-size: 20px;
+}
+
+.user-details .fullName,
+.user-details .email,
+.user-details .phone,
+.user-details .address {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.offer .media img {
+    width: 350px;
+}
+
+.user-offers .offers-container .offer a {
+    text-decoration: none;
+    color: #000;
+}
+
+.user-offers .offers-container .offer:hover {
+    cursor: pointer;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.5);
+}
+
+.offers-container {
+    display: flex;
+}

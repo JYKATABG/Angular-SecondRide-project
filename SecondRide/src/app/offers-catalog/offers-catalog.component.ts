@@ -16,12 +16,13 @@ export class OffersCatalogComponent implements OnInit {
   ngOnInit(): void {
     this.offerService.getAllOffers().subscribe({
       next: (offers) => {
-        const offerValues = this.offerService.getArrayValues(Object.values(offers), Object.keys(offers));
+        const offerValues = this.offerService.getArrayValues(
+          Object.values(offers),
+          Object.keys(offers)
+        );
         this.appOffers = offerValues;
-        
-        
       },
-      error: (err) => console.log(err)
+      error: (err) => console.log(err),
     });
   }
 }
