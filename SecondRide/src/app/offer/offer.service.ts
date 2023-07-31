@@ -8,14 +8,16 @@ import { Offer } from '../types/offer';
 })
 export class OfferService {
   API_LINK: string =
-    'https://secondride-angular-default-rtdb.europe-west1.firebasedatabase.app/offers.json';
+    'https://secondride-angular-default-rtdb.europe-west1.firebasedatabase.app/offers';
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
   createNewOffer(formData: object) {
-    this.httpClient.post<Offer[]>(this.API_LINK, formData).subscribe((res) => {
-      this.router.navigate(['/offers']);
-    });
+    this.httpClient
+      .post<Offer[]>(`${this.API_LINK}.json`, formData)
+      .subscribe((res) => {
+        this.router.navigate(['/offers']);
+      });
   }
 
   getAllOffers() {
@@ -30,6 +32,6 @@ export class OfferService {
   }
 
   getOneOffer(id: string) {
-    return this.httpClient.get<Offer>(`${this.API_LINK}/${id}`);
+    return this.httpClient.get<Offer>(`${this.API_LINK}/${id}.json`);
   }
 }

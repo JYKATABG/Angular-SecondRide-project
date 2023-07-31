@@ -1,16 +1,13 @@
 <div class="container">
   <a routerLink="/offers" class="back-btn"><i class="fa-solid fa-arrow-left"></i>Back</a>
   <div class="heading">
-    <h1>Seat Leon 1.9TDI</h1>
-    <h2 class="price">3.500 лв.</h2>
+    <h1>{{offerDetails?.brand}} {{offerDetails?.model}} {{offerDetails?.engine}}</h1>
+    <h2 class="price">{{offerDetails?.price}} лв.</h2>
   </div>
   <div class="offer-container">
     <div class="offer-information">
       <div class="media">
-        <img
-          src="https://scontent.fvar1-1.fna.fbcdn.net/v/t1.6435-9/118767916_3579383962113672_8181945977141201250_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=kk0Fm96BXs8AX8JS-iS&_nc_ht=scontent.fvar1-1.fna&oh=00_AfDmZbw1fPH2wv9MYy70WZdbv4dPKquPX4QqIl6Hvm95bw&oe=64DF91D6"
-          alt=""
-        />
+        <img src={{offerDetails?.carImage}} alt="image" />
       </div>
 
       <h2 class="car-info-heading">Данни за автомобила</h2>
@@ -27,32 +24,27 @@
           <p>Цвят</p>
         </div>
         <div class="right-side">
-          <p class="bold-info">август 2003г.</p>
-          <p class="bold-info">Дизелов</p>
-          <p class="bold-info">110 к.с.</p>
-          <p class="bold-info">Ръчна</p>
-          <p class="bold-info">Хечбек</p>
-          <p class="bold-info">215000 км</p>
-          <p class="bold-info">4/5</p>
-          <p class="bold-info">Сив</p>
+          <p class="bold-info">{{offerDetails?.createdDate}}</p>
+          <p class="bold-info">{{offerDetails?.fuelTypes}}</p>
+          <p class="bold-info">{{offerDetails?.horsepower}} к.с.</p>
+          <p class="bold-info">{{offerDetails?.gearboxTypes}}</p>
+          <p class="bold-info">{{offerDetails?.categoryTypes}}</p>
+          <p class="bold-info">{{offerDetails?.mileage}} км</p>
+          <p class="bold-info">{{offerDetails?.doorsTypes}}</p>
+          <p class="bold-info">{{offerDetails?.color}}</p>
         </div>
       </div>
       <div class="description-container">
         <h3>Допълнителна информация</h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est veniam
-          dolore dicta facilis delectus itaque cum id nobis, repudiandae sed
-          enim molestiae nostrum necessitatibus autem vitae hic, voluptatem eum
-          rerum maiores! Voluptatibus, quo quis? Expedita possimus quis
-          dignissimos repellat, eligendi voluptate delectus, corporis tempora
-          saepe sit laborum! Illo, repellat consequuntur.
+          {{offerDetails?.descriptionArea}}
         </p>
       </div>
     </div>
     <div class="owner-info">
       <h2 class="user-type"><i class="fa-solid fa-user"></i>Частно лице</h2>
-      <p class="city"><i class="fa-solid fa-location-dot"></i>София</p>
-      <h3 class="phone-number"><i class="fa-solid fa-mobile"></i>0883212328</h3>
+      <p class="city"><i class="fa-solid fa-location-dot"></i>{{offerDetails?.location}}</p>
+      <h3 class="phone-number"><i class="fa-solid fa-mobile"></i>0{{offerDetails?.phone}}</h3>
       <div class="divider"></div>
       <!-- IF USER ISN'T OWNER OF THE OFFER -->
       <button class="save-button">

@@ -44,13 +44,15 @@
 }
 
 .offer-container .media {
-    display: block;
-    width: 100%;
-    height: auto;
+    width: 850px;
 }
 
 .offer-container .media img {
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.4);
+    display: block;
+    width: 100%;
+    height: auto;
+
 }
 
 .offer-information .car-information {
