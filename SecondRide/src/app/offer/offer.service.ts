@@ -34,4 +34,8 @@ export class OfferService {
   getOneOffer(id: string) {
     return this.httpClient.get<Offer>(`${this.API_LINK}/${id}.json`);
   }
+
+  deleteOffer(id: string) {
+    return this.httpClient.delete(`${this.API_LINK}/${id}.json`);
+  }
 }
