@@ -38,4 +38,8 @@ export class OfferService {
   deleteOffer(id: string) {
     return this.httpClient.delete(`${this.API_LINK}/${id}.json`);
   }
+
+  editOffer(id: string, changedData: object) {
+    return this.httpClient.put(`${this.API_LINK}/${id}.json`, changedData);
+  }
 }

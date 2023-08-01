@@ -1,0 +1,245 @@
+<div class="container">
+    <div class="heading">
+        <h1>EDIT OFFER</h1>
+        <div class="divider"></div>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="editOffer()">
+        <div class="input-row">
+            <label for="carImage">Снимка на автомобила</label>
+            <input type="text" name="carImage" id="carImage" value="test" placeholder="Paste image address..."
+                formControlName="carImage" #carImage [ngModel]="originalData?.carImage" />
+            <!-- ERRORS -->
+            <ng-container>
+                <div class="errors" *ngIf="form.get('carImage')?.touched">
+                    <p *ngIf="form.get('carImage')?.errors?.['required']">
+                        Image is required
+                    </p>
+                </div>
+            </ng-container>
+        </div>
+        <div class="input-row">
+            <label for="createdDate">Дата на производство</label>
+            <input type="date" name="createdDate" id="createdDate" formControlName="createdDate" #createdDate
+                [ngModel]="originalData?.createdDate" />
+            <!-- ERRORS -->
+            <ng-container>
+                <div class="errors" *ngIf="form.get('createdDate')?.touched">
+                    <p *ngIf="form.get('createdDate')?.errors?.['required']">
+                        Date is required
+                    </p>
+                    <p *ngIf="form.get('createdDate')?.errors?.['dateValidator']">
+                        Date should be less than 2023
+                    </p>
+                    <p *ngIf="form.get('createdDate')?.errors?.['pattern']">
+                        Number should start with 088/089
+                    </p>
+                </div>
+            </ng-container>
+        </div>
+        <div class="input-row">
+            <label for="brand">Марка</label>
+            <input type="text" name="brand" id="brand" placeholder="Mercedes, Seat, VW" formControlName="brand" #brand
+                [ngModel]="originalData?.brand" />
+            <!-- ERRORS -->
+            <ng-container>
+                <div class="errors" *ngIf="form.get('brand')?.touched">
+                    <p *ngIf="form.get('brand')?.errors?.['required']">
+                        Brand is required
+                    </p>
+                    <p *ngIf="form.get('brand')?.errors?.['minlength']?.['requiredLength']">
+                        Brand length should be at least 2
+                    </p>
+                </div>
+            </ng-container>
+        </div>
+        <div class="input-row">
+            <label for="model">Модел</label>
+            <input type="text" name="model" id="model" placeholder="Е55, Leon, Golf" formControlName="model" #model
+                [ngModel]="originalData?.model" />
+            <!-- ERRORS -->
+            <ng-container>
+                <div class="errors" *ngIf="form.get('model')?.touched">
+                    <p *ngIf="form.get('model')?.errors?.['required']">
+                        Model is required
+                    </p>
+                    <p *ngIf="form.get('model')?.errors?.['minlength']?.['requiredLength']">
+                        Model length should be at least 2
+                    </p>
+                </div>
+            </ng-container>
+        </div>
+        <div class="input-row">
+            <label for="engine">Двигател</label>
+            <input type="text" name="engine" id="engine" placeholder="1.9TDI, 3.0i" formControlName="engine" #engine
+                [ngModel]="originalData?.engine" />
+            <!-- ERRORS -->
+            <ng-container>
+                <div class="errors" *ngIf="form.get('engine')?.touched">
+                    <p *ngIf="form.get('engine')?.errors?.['required']">
+                        Engine is required
+                    </p>
+                </div>
+            </ng-container>
+        </div>
+        <div class="input-row">
+            <label for="price">Цена(лв)</label>
+            <input type="number" name="price" id="price" formControlName="price" #price
+                [ngModel]="originalData?.price" />
+            <!-- ERRORS -->
+            <ng-container>
+                <div class="errors" *ngIf="form.get('price')?.touched">
+                    <p *ngIf="form.get('price')?.errors?.['required']">
+                        Price is required
+                    </p>
+                    <p *ngIf="form.get('price')?.errors?.['min']">
+                        Price should be more than 0
+                    </p>
+                </div>
+            </ng-container>
+        </div>
+        <div class="input-row">
+            <label for="horsepower">Мощност</label>
+            <input type="number" name="horsepower" id="horsepower" placeholder="Мощност в к.с."
+                formControlName="horsepower" #horsepower [ngModel]="originalData?.horsepower" />
+            <!-- ERRORS -->
+            <ng-container>
+                <div class="errors" *ngIf="form.get('horsepower')?.touched">
+                    <p *ngIf="form.get('horsepower')?.errors?.['required']">
+                        Horsepower is required
+                    </p>
+                    <p *ngIf="form.get('horsepower')?.errors?.['min']">
+                        Horsepower should be more than 0
+                    </p>
+                    <p *ngIf="form.get('horsepower')?.errors?.['maxlength']">
+                        Horsepower should be max 4 numbers
+                    </p>
+                </div>
+            </ng-container>
+        </div>
+        <div class="input-row">
+            <label for="mileage">Пробег</label>
+            <input type="number" name="mileage" id="mileage" placeholder="Пробег в км." formControlName="mileage"
+                #mileage [ngModel]="originalData?.mileage" />
+            <!-- ERRORS -->
+            <ng-container>
+                <div class="errors" *ngIf="form.get('mileage')?.touched">
+                    <p *ngIf="form.get('mileage')?.errors?.['required']">
+                        Mileage is required
+                    </p>
+                    <p *ngIf="form.get('mileage')?.errors?.['min']">
+                        Mileage should be more than 0
+                    </p>
+                </div>
+            </ng-container>
+        </div>
+        <div class="input-row">
+            <label for="location">Местоположение</label>
+            <input type="text" name="location" id="location" placeholder="София, Варна" formControlName="location"
+                #location [ngModel]="originalData?.location" />
+            <!-- ERRORS -->
+            <ng-container>
+                <div class="errors" *ngIf="form.get('location')?.touched">
+                    <p *ngIf="form.get('location')?.errors?.['required']">
+                        Location is required
+                    </p>
+                    <p *ngIf="form.get('location')?.errors?.['minlength']?.['requiredLength']">
+                        Location should be more than 2 characters
+                    </p>
+                </div>
+            </ng-container>
+        </div>
+        <div class="input-row">
+            <label for="color">Цвят</label>
+            <input type="text" name="color" id="color" formControlName="color" #color [ngModel]="originalData?.color" />
+            <!-- ERRORS -->
+            <ng-container>
+                <div class="errors" *ngIf="form.get('color')?.touched">
+                    <p *ngIf="form.get('color')?.errors?.['required']">
+                        Color is required
+                    </p>
+                    <!-- <p>Color should be text</p> -->
+                </div>
+            </ng-container>
+        </div>
+        <div class="input-row">
+            <label for="phone">Номер за връзка</label>
+            <input type="text" name="phone" id="phone" placeholder="+359" formControlName="phone" #phone
+                [ngModel]="originalData?.phone" />
+            <!-- ERRORS -->
+            <ng-container>
+                <div class="errors" *ngIf="form.get('phone')?.touched">
+                    <p *ngIf="form.get('phone')?.errors?.['required']">
+                        Phone is required
+                    </p>
+                    <p *ngIf="form.get('phone')?.errors?.['minlength']?.['requiredLength']">
+                        Phone should be min 9 characters
+                    </p>
+                    <p *ngIf="form.get('phone')?.hasError('maxlength')">
+                        Phone should be max 9 characters
+                    </p>
+                    <!-- <p>Phone should start with 088 / 089</p> -->
+                </div>
+            </ng-container>
+        </div>
+        <div class="all-selects">
+            <div class="input-row">
+                <label for="fuel-type">Вид гориво</label>
+                <select name="fuelTypes" id="fuelTypes" formControlName="fuelTypes" #fuelTypes
+                    [ngModel]="originalData?.fuelTypes">
+                    <option selected disabled></option>
+                    <option value="Дизел">Дизел</option>
+                    <option value="Бензин">Бензин</option>
+                    <option value="Газ/Бензин">Газ/Бензин</option>
+                    <option value="Хибрид">Хибрид</option>
+                </select>
+            </div>
+
+            <div class="input-row">
+                <label for="gearbox">Скоростна кутия</label>
+                <select name="gearboxTypes" id="gearboxTypes" formControlName="gearboxTypes" #gearboxTypes
+                    [ngModel]="originalData?.gearboxTypes">
+                    <option selected disabled></option>
+                    <option value="Ръчна">Ръчна</option>
+                    <option value="Автоматична">Автоматична</option>
+                </select>
+            </div>
+            <div class="input-row">
+                <label for="category">Категория</label>
+                <select name="categoryTypes" id="categoryTypes" formControlName="categoryTypes" #categoryTypes
+                    [ngModel]="originalData?.categoryTypes">
+                    <option selected disabled></option>
+                    <option value="Седан">Седан</option>
+                    <option value="Хечбек">Хечбек</option>
+                    <option value="Купе">Купе</option>
+                    <option value="Комби">Комби</option>
+                    <option value="Джип">Джип</option>
+                </select>
+            </div>
+
+            <div class="input-row">
+                <label for="doors">Брой врати</label>
+                <select name="doorsTypes" id="doorsTypes" formControlName="doorsTypes" #doorsTypes
+                    [ngModel]="originalData?.doorsTypes">
+                    <option selected disabled></option>
+                    <option value="2/3">2/3</option>
+                    <option value="4/5">4/5</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="description">
+            <h2>Description</h2>
+            <textarea name="descriptionArea" id="descriptionArea" cols="42" rows="15" formControlName="descriptionArea"
+                #descriptionArea [ngModel]="originalData?.descriptionArea"></textarea>
+        </div>
+
+        <!-- ERRORS -->
+        <div class="select-errors" *ngIf="isInvalid">
+            <p>All fields are required</p>
+        </div>
+
+        <button class="create-btn" (click)="editOffer()">Save</button>
+        <button class="create-btn" (click)="cancelOffer()">Cancel</button>
+    </form>
+</div>

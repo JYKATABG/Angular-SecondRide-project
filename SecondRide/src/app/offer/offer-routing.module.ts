@@ -4,6 +4,7 @@ import { OffersCatalogComponent } from '../offers-catalog/offers-catalog.compone
 import { CurrentOfferComponent } from './current-offer/current-offer.component';
 import { NewOfferComponent } from './new-offer/new-offer.component';
 import { AuthActivate } from '../core/guards/auth.activate';
+import { EditOfferComponent } from './edit-offer/edit-offer.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: ':offerId',
         component: CurrentOfferComponent,
+      },
+      {
+        path: ':offerId/editOffer',
+        component: EditOfferComponent,
       },
     ],
   },

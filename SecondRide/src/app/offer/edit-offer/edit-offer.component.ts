@@ -1,16 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { dateValidator } from 'src/app/shared/validators/date-validator';
 import { OfferService } from '../offer.service';
-import { getAuth } from '@firebase/auth';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Offer } from 'src/app/types/offer';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-new-offer',
-  templateUrl: './new-offer.component.html',
-  styleUrls: ['./new-offer.component.css'],
+  selector: 'app-edit-offer',
+  templateUrl: './edit-offer.component.html',
+  styleUrls: ['./edit-offer.component.css'],
 })
-export class NewOfferComponent {
+export class EditOfferComponent implements OnInit {
   isInvalid: boolean = false;
+  originalData: Offer | undefined;
+  id: string = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private offerService: OfferService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService
+  ) {}
+
+  get offerId(): string {
+    return this.activatedRoute.snapshot.params['offerId'];
+  }
 
   form = this.fb.group(
     {
@@ -42,56 +58,31 @@ export class NewOfferComponent {
     }
   );
 
-  constructor(private fb: FormBuilder, private offerService: OfferService) {}
-  auth = getAuth();
-  user = this.auth.currentUser;
+  ngOnInit(): void {
+    // Getting values
+    this.offerService.getOneOffer(this.offerId).subscribe((result) => {
+      this.originalData = result;
+    });
+  }
 
-  createOffer() {
-    console.log(this.form.value);
-
+  editOffer() {
     if (this.form.invalid) {
-      this.isInvalid = true;
-      return;
+      return alert('Form is invalid');
     }
 
-    const {
-      carImage,
-      createdDate,
-      brand,
-      model,
-      engine,
-      price,
-      horsepower,
-      mileage,
-      location,
-      color,
-      phone,
-      fuelTypes,
-      gearboxTypes,
-      categoryTypes,
-      doorsTypes,
-      descriptionArea,
-    } = this.form.value;
+    this.offerService
+      .editOffer(this.offerId, this.form.value)
+      .subscribe((res) => {
+        this.router.navigate([`/offers/${this.offerId}`]);
+        this.toastr.success(
+          `${this.form.value?.brand}${this.form.value?.model}${this.form.value?.engine} successfully edited`,
+          'Offer message'
+        );
+      });
+    console.log(this.form.value);
+  }
 
-    this.offerService.createNewOffer({
-      carImage,
-      createdDate,
-      brand,
-      model,
-      engine,
-      price,
-      horsepower,
-      mileage,
-      location,
-      color,
-      phone,
-      fuelTypes,
-      gearboxTypes,
-      categoryTypes,
-      doorsTypes,
-      descriptionArea,
-      _ownerId: this.user?.uid,
-    });
-    this.form.reset();
+  cancelOffer() {
+    this.router.navigate([`/offers/${this.offerId}`]);
   }
 }

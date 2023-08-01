@@ -1,7 +1,6 @@
 export interface Offer {
   _id: string | undefined;
   _ownerId: string;
-  favourites: string[];
   carImage: string;
   createdDate: Date;
   brand: string;
