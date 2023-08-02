@@ -7,13 +7,8 @@
   <form [formGroup]="form" (ngSubmit)="createOffer()">
     <div class="input-row">
       <label for="carImage">Снимка на автомобила</label>
-      <input
-        type="text"
-        name="carImage"
-        id="carImage"
-        placeholder="Paste image address..."
-        formControlName="carImage"
-      />
+      <input type="text" name="carImage" id="carImage" placeholder="Paste image address..."
+        formControlName="carImage" />
       <!-- ERRORS -->
       <ng-container>
         <div class="errors" *ngIf="form.get('carImage')?.touched">
@@ -25,12 +20,7 @@
     </div>
     <div class="input-row">
       <label for="createdDate">Дата на производство</label>
-      <input
-        type="date"
-        name="createdDate"
-        id="createdDate"
-        formControlName="createdDate"
-      />
+      <input type="date" name="createdDate" id="createdDate" formControlName="createdDate" />
       <!-- ERRORS -->
       <ng-container>
         <div class="errors" *ngIf="form.get('createdDate')?.touched">
@@ -48,22 +38,14 @@
     </div>
     <div class="input-row">
       <label for="brand">Марка</label>
-      <input
-        type="text"
-        name="brand"
-        id="brand"
-        placeholder="Mercedes, Seat, VW"
-        formControlName="brand"
-      />
+      <input type="text" name="brand" id="brand" placeholder="Mercedes, Seat, VW" formControlName="brand" />
       <!-- ERRORS -->
       <ng-container>
         <div class="errors" *ngIf="form.get('brand')?.touched">
           <p *ngIf="form.get('brand')?.errors?.['required']">
             Brand is required
           </p>
-          <p
-            *ngIf="form.get('brand')?.errors?.['minlength']?.['requiredLength']"
-          >
+          <p *ngIf="form.get('brand')?.errors?.['minlength']?.['requiredLength']">
             Brand length should be at least 2
           </p>
         </div>
@@ -71,22 +53,14 @@
     </div>
     <div class="input-row">
       <label for="model">Модел</label>
-      <input
-        type="text"
-        name="model"
-        id="model"
-        placeholder="Е55, Leon, Golf"
-        formControlName="model"
-      />
+      <input type="text" name="model" id="model" placeholder="Е55, Leon, Golf" formControlName="model" />
       <!-- ERRORS -->
       <ng-container>
         <div class="errors" *ngIf="form.get('model')?.touched">
           <p *ngIf="form.get('model')?.errors?.['required']">
             Model is required
           </p>
-          <p
-            *ngIf="form.get('model')?.errors?.['minlength']?.['requiredLength']"
-          >
+          <p *ngIf="form.get('model')?.errors?.['minlength']?.['requiredLength']">
             Model length should be at least 2
           </p>
         </div>
@@ -94,13 +68,7 @@
     </div>
     <div class="input-row">
       <label for="engine">Двигател</label>
-      <input
-        type="text"
-        name="engine"
-        id="engine"
-        placeholder="1.9TDI, 3.0i"
-        formControlName="engine"
-      />
+      <input type="text" name="engine" id="engine" placeholder="1.9TDI, 3.0i" formControlName="engine" />
       <!-- ERRORS -->
       <ng-container>
         <div class="errors" *ngIf="form.get('engine')?.touched">
@@ -127,13 +95,8 @@
     </div>
     <div class="input-row">
       <label for="horsepower">Мощност</label>
-      <input
-        type="number"
-        name="horsepower"
-        id="horsepower"
-        placeholder="Мощност в к.с."
-        formControlName="horsepower"
-      />
+      <input type="number" name="horsepower" id="horsepower" placeholder="Мощност в к.с."
+        formControlName="horsepower" />
       <!-- ERRORS -->
       <ng-container>
         <div class="errors" *ngIf="form.get('horsepower')?.touched">
@@ -151,13 +114,7 @@
     </div>
     <div class="input-row">
       <label for="mileage">Пробег</label>
-      <input
-        type="number"
-        name="mileage"
-        id="mileage"
-        placeholder="Пробег в км."
-        formControlName="mileage"
-      />
+      <input type="number" name="mileage" id="mileage" placeholder="Пробег в км." formControlName="mileage" />
       <!-- ERRORS -->
       <ng-container>
         <div class="errors" *ngIf="form.get('mileage')?.touched">
@@ -172,22 +129,14 @@
     </div>
     <div class="input-row">
       <label for="location">Местоположение</label>
-      <input
-        type="text"
-        name="location"
-        id="location"
-        placeholder="София, Варна"
-        formControlName="location"
-      />
+      <input type="text" name="location" id="location" placeholder="София, Варна" formControlName="location" />
       <!-- ERRORS -->
       <ng-container>
         <div class="errors" *ngIf="form.get('location')?.touched">
           <p *ngIf="form.get('location')?.errors?.['required']">
             Location is required
           </p>
-          <p
-            *ngIf="form.get('location')?.errors?.['minlength']?.['requiredLength']"
-          >
+          <p *ngIf="form.get('location')?.errors?.['minlength']?.['requiredLength']">
             Location should be more than 2 characters
           </p>
         </div>
@@ -208,28 +157,16 @@
     </div>
     <div class="input-row">
       <label for="phone">Номер за връзка</label>
-      <input
-        type="text"
-        name="phone"
-        id="phone"
-        placeholder="+359"
-        formControlName="phone"
-      />
+      <input type="tel" name="phone" id="phone" placeholder="+359" pattern="(087)|(088)|(089)[0-9]{7}"
+        formControlName="phone" />
       <!-- ERRORS -->
       <ng-container>
         <div class="errors" *ngIf="form.get('phone')?.touched">
           <p *ngIf="form.get('phone')?.errors?.['required']">
             Phone is required
           </p>
-          <p
-            *ngIf="form.get('phone')?.errors?.['minlength']?.['requiredLength']"
-          >
-            Phone should be min 9 characters
+          <p *ngIf="form.get('phone')?.errors?.['pattern']">Phone Number should start (087, 088, 089) and 10 numbers
           </p>
-          <p *ngIf="form.get('phone')?.hasError('maxlength')">
-            Phone should be max 9 characters
-          </p>
-          <!-- <p>Phone should start with 088 / 089</p> -->
         </div>
       </ng-container>
     </div>
@@ -247,11 +184,7 @@
 
       <div class="input-row">
         <label for="gearbox">Скоростна кутия</label>
-        <select
-          name="gearboxTypes"
-          id="gearboxTypes"
-          formControlName="gearboxTypes"
-        >
+        <select name="gearboxTypes" id="gearboxTypes" formControlName="gearboxTypes">
           <option selected disabled></option>
           <option value="Ръчна">Ръчна</option>
           <option value="Автоматична">Автоматична</option>
@@ -259,11 +192,7 @@
       </div>
       <div class="input-row">
         <label for="category">Категория</label>
-        <select
-          name="categoryTypes"
-          id="categoryTypes"
-          formControlName="categoryTypes"
-        >
+        <select name="categoryTypes" id="categoryTypes" formControlName="categoryTypes">
           <option selected disabled></option>
           <option value="Седан">Седан</option>
           <option value="Хечбек">Хечбек</option>
@@ -285,13 +214,8 @@
 
     <div class="description">
       <h2>Description</h2>
-      <textarea
-        name="descriptionArea"
-        id="descriptionArea"
-        cols="42"
-        rows="15"
-        formControlName="descriptionArea"
-      ></textarea>
+      <textarea name="descriptionArea" id="descriptionArea" cols="42" rows="15"
+        formControlName="descriptionArea"></textarea>
     </div>
 
     <!-- ERRORS -->
