@@ -2,9 +2,9 @@
     <div class="left-section">
         <div class="user-avatar">
             <img src="https://img.freepik.com/free-icon/man_318-487775.jpg?w=2000" alt="">
-            <h1 class="username">SASHKO34</h1>
+            <h1 class="username">{{userData?.username}}</h1>
             <div class="user-offers-details">
-                <p>User Offers: 3</p>
+                <p>User Offers: {{userOffers.length}}</p>
                 <p>Favourite Offers: 2</p>
             </div>
         </div>
@@ -27,121 +27,92 @@
         </div>
     </div>
     <div class="right-section">
-        <div class="user-details">
+        <div class="user-details" *ngIf="!isEditMode">
             <div class="fullName">
                 <h3>Full Name</h3>
-                <p>Kenneth Valdez</p>
+                <p>{{userData?.fullName || 'Information not found'}}</p>
             </div>
             <div class="email">
                 <h3>Email</h3>
-                <p>sashko34@gmail.com</p>
+                <p>{{userData?.email || 'Information not found'}}</p>
             </div>
             <div class="phone">
-                <h3>Phone</h3>
-                <p>0893679809</p>
+                <h3>Phone Number</h3>
+                <p>{{userData?.phone || 'Information not found'}}</p>
             </div>
             <div class="address">
                 <h3>Address</h3>
-                <p>ул. Славянска 34</p>
+                <p>{{userData?.address || 'Information not found'}}</p>
             </div>
-            <button class="edit-btn">EDIT</button>
+            <button class="edit-btn" (click)="toggleEditMode()">EDIT</button>
         </div>
+
+        <div class="user-details-form" *ngIf="isEditMode">
+            <form #userDetailsForm="ngForm" (ngSubmit)="saveChanges(userDetailsForm)">
+                <div class="fullName">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" name="fullName" id="fullName" #fullName [ngModel]="userData?.fullName" required>
+                </div>
+                <div class="email">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" #email="ngModel" [ngModel]="userData?.email" required
+                        appEmail>
+                </div>
+                <!-- Email Errors -->
+                <ng-container *ngIf="email.touched">
+                    <div class="error-msg">
+                        <p *ngIf="email.errors?.['emailValidator']">Invalid email!</p>
+                        <p *ngIf="email.errors?.['required']">Email is required!</p>
+                    </div>
+                </ng-container>
+                <div class="phone">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" name="phone" id="phone" pattern="(087)|(088)|(089)[0-9]{7}" #number="ngModel"
+                        [ngModel]="userData?.phone" required>
+                </div>
+                <!-- Phone Errors -->
+                <ng-container *ngIf="number.touched">
+                    <div class="error-msg">
+                        <p *ngIf="number.errors?.['pattern']">Phone Number should start (087, 088, 089) and 10 numbers
+                        </p>
+                        <p *ngIf="number.errors?.['required']">Phone Number is required!</p>
+                    </div>
+                </ng-container>
+                <div class="address">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" id="address" #address [ngModel]="userData?.address">
+                </div>
+                <ng-container *ngIf="isInvalid">
+                    <div class="error-msg">
+                        <p>Information is invalid!</p>
+                    </div>
+                </ng-container>
+                <div class="buttons">
+                    <button class="save-btn btn" type="submit">Save</button>
+                    <button class="cancel-btn btn" (click)="toggleEditMode()">Cancel</button>
+                </div>
+            </form>
+        </div>
+
         <div class="user-offers">
             <h1>User offers</h1>
-            <div class="offers-container">
+            <div class="offers-container" *ngFor="let offer of userOffers">
                 <div class="offer">
-                    <a href="#">
+                    <a routerLink="/offers/{{offer._id}}">
                         <div class="media">
-                            <img src="https://images.classic.com/vehicles/167cfb5c78d80e1ae3d9ec2bf65c95684edcd454.jpg?auto=format&fit=crop&w=600&h=384"
-                                alt="">
+                            <img src="{{offer.carImage}}" alt="">
                             <div class="card-primary">
-                                <h6 class="card-price">8,999 лв.</h6>
+                                <h6 class="card-price">{{offer.price}}лв.</h6>
                             </div>
                         </div>
                         <div class="card-heading">
-                            <h5>Mercedes CLS 63 AMG</h5>
+                            <h5>{{offer.brand}} {{offer.model}}</h5>
                         </div>
                         <div class="divider"></div>
-                        <div class="typography">2005, Дизел, 189000 км.</div>
+                        <div class="typography">{{offer.createdDate}}, {{offer.fuelTypes}}, {{offer.mileage}} км.</div>
                     </a>
                     <div class="card-footer">
-                        <p>частно лице, София</p>
-                    </div>
-                </div>
-                <div class="offer">
-                    <a href="#">
-                        <div class="media">
-                            <img src="https://images.classic.com/vehicles/167cfb5c78d80e1ae3d9ec2bf65c95684edcd454.jpg?auto=format&fit=crop&w=600&h=384"
-                                alt="">
-                            <div class="card-primary">
-                                <h6 class="card-price">8,999 лв.</h6>
-                            </div>
-                        </div>
-                        <div class="card-heading">
-                            <h5>Mercedes CLS 63 AMG</h5>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="typography">2005, Дизел, 189000 км.</div>
-                    </a>
-                    <div class="card-footer">
-                        <p>частно лице, София</p>
-                    </div>
-                </div>
-                <div class="offer">
-                    <a href="#">
-                        <div class="media">
-                            <img src="https://images.classic.com/vehicles/167cfb5c78d80e1ae3d9ec2bf65c95684edcd454.jpg?auto=format&fit=crop&w=600&h=384"
-                                alt="">
-                            <div class="card-primary">
-                                <h6 class="card-price">8,999 лв.</h6>
-                            </div>
-                        </div>
-                        <div class="card-heading">
-                            <h5>Mercedes CLS 63 AMG</h5>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="typography">2005, Дизел, 189000 км.</div>
-                    </a>
-                    <div class="card-footer">
-                        <p>частно лице, София</p>
-                    </div>
-                </div>
-                <div class="offer">
-                    <a href="#">
-                        <div class="media">
-                            <img src="https://images.classic.com/vehicles/167cfb5c78d80e1ae3d9ec2bf65c95684edcd454.jpg?auto=format&fit=crop&w=600&h=384"
-                                alt="">
-                            <div class="card-primary">
-                                <h6 class="card-price">8,999 лв.</h6>
-                            </div>
-                        </div>
-                        <div class="card-heading">
-                            <h5>Mercedes CLS 63 AMG</h5>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="typography">2005, Дизел, 189000 км.</div>
-                    </a>
-                    <div class="card-footer">
-                        <p>частно лице, София</p>
-                    </div>
-                </div>
-                <div class="offer">
-                    <a href="#">
-                        <div class="media">
-                            <img src="https://images.classic.com/vehicles/167cfb5c78d80e1ae3d9ec2bf65c95684edcd454.jpg?auto=format&fit=crop&w=600&h=384"
-                                alt="">
-                            <div class="card-primary">
-                                <h6 class="card-price">8,999 лв.</h6>
-                            </div>
-                        </div>
-                        <div class="card-heading">
-                            <h5>Mercedes CLS 63 AMG</h5>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="typography">2005, Дизел, 189000 км.</div>
-                    </a>
-                    <div class="card-footer">
-                        <p>частно лице, София</p>
+                        <p>частно лице, {{offer.location}}</p>
                     </div>
                 </div>
             </div>

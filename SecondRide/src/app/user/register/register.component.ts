@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm, Validators } from '@angular/forms';
-import {
-  Auth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  getAuth,
-} from '@angular/fire/auth';
+import { Auth, getAuth, updateCurrentUser } from '@angular/fire/auth';
 import { matchPasswordsValidator } from 'src/app/shared/validators/match-passwords-validator';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
@@ -16,11 +11,10 @@ import { UserService } from '../user.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(
-    public auth: Auth,
-    private router: Router,
-    private userService: UserService
-  ) {}
+  auth = getAuth();
+  user = this.auth.currentUser;
+
+  constructor(private router: Router, private userService: UserService) {}
 
   register(form: NgForm): void {
     if (form.invalid) {
@@ -35,7 +29,16 @@ export class RegisterComponent {
 
     matchPasswordsValidator(value.password);
 
-    this.userService.register(value.email, value.password, value.username);
+    this.userService.register(value.email, value.password, value.username, {
+      _userId: '',
+      _id: '',
+      username: value.username,
+      fullName: '',
+      email: value.email,
+      address: '',
+      phone: '',
+      favouriteOffers: [''],
+    });
     this.router.navigate(['/home']);
   }
 }

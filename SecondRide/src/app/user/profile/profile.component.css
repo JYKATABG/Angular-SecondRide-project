@@ -223,3 +223,90 @@
 .offers-container {
     display: flex;
 }
+
+.user-details-form {
+    background-color: #262626;
+    width: 900px;
+    height: 428px;
+    border-radius: 15px;
+    padding: 1.5em;
+    margin-top: 2.4em;
+    color: #fff;
+}
+
+.user-details-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+}
+
+.user-details-form form div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+    margin-bottom: auto;
+    gap: 1em;
+    width: 100%;
+}
+
+.user-details-form form div input {
+    width: 500px;
+    padding: 5px 0;
+    background-color: transparent;
+    font-size: 19px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+}
+
+.user-details-form form .buttons {
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
+    flex-direction: row;
+    margin-top: auto;
+    gap: 2em;
+}
+
+.buttons .btn {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 15px;
+    width: 100px;
+    border: none;
+    outline: none;
+    color: #fff;
+    color: #000;
+    transition: 0.3s;
+}
+
+.buttons .save-btn {
+    background-color: green;
+    color: #fff;
+}
+
+.buttons .cancel-btn {
+    background-color: red;
+    color: #fff;
+}
+
+.buttons .save-btn:hover,
+.buttons .cancel-btn:hover {
+    transform: scale(1.1);
+    border: 1px solid #fff;
+}
+
+.error-msg {
+    color: red;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px 0;
+}

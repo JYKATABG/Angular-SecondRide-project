@@ -79,7 +79,6 @@ export class EditOfferComponent implements OnInit {
           'Offer message'
         );
       });
-    console.log(this.form.value);
   }
 
   cancelOffer() {

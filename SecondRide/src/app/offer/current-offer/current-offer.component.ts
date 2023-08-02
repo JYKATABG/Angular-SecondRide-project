@@ -29,7 +29,7 @@ export class CurrentOfferComponent implements OnInit {
 
     this.offerService.getOneOffer(this.id).subscribe((offer) => {
       this.offerDetails = offer;
-      this.isOwner = offer?._ownerId === this.user?.uid;
+      return (this.isOwner = offer?._ownerId === this.user?.uid);
     });
   }
   deleteOffer() {

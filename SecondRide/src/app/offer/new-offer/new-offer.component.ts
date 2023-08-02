@@ -47,7 +47,6 @@ export class NewOfferComponent {
   user = this.auth.currentUser;
 
   createOffer() {
-    console.log(this.form.value);
 
     if (this.form.invalid) {
       this.isInvalid = true;
