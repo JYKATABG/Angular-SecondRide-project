@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     gap: 2em;
-    margin-bottom: 5em;
+    margin-bottom: 20em;
 }
 
 .user-info .username {
@@ -121,14 +121,14 @@
 }
 
 .offers-container {
-    display: grid;
-    margin: 1em 2em 0 0;
-    gap: 10px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 1em 2em 1.5em 0;
+    display: flex;
     overflow: auto;
+    gap: 10px;
 }
 
 .user-offers {
+    flex-direction: column;
     margin: 1em 0 5em 0;
     background-color: #262626;
     padding: 1em;
@@ -147,11 +147,30 @@
     position: relative;
     background-color: #fff;
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.1);
-    width: 180px;
-    height: 200px;
+    width: 300px;
+    height: 350px;
     transition: 0.3s;
-    margin: 0 1.5em 2em 1.5em;
+    margin: 1em 1.5em 2em 1.5em;
     font-size: 15px;
+    border-radius: 10px;
+}
+
+.user-offers .offers-container .offer:hover {
+    transform: scale(1.1);
+}
+
+.divider {
+    border-top: 1px solid #000;
+    opacity: .12;
+    margin: 0.5rem 1rem;
+}
+
+.no-offers {
+    text-align: center;
+    margin-top: 2em;
+    color: #fff;
+    font-size: 1.5em;
+    letter-spacing: 2px;
 }
 
 .card-primary,
@@ -162,7 +181,9 @@
 }
 
 .offers-container .offer .media img {
-    width: 180px;
+    width: 300px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .offer .card-price {
@@ -220,9 +241,10 @@
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.5);
 }
 
-.offers-container {
+/* .offers-container {
     display: flex;
-}
+    flex-wrap: wrap;
+} */
 
 .user-details-form {
     background-color: #262626;

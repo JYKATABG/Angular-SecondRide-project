@@ -30,19 +30,19 @@
         <div class="user-details" *ngIf="!isEditMode">
             <div class="fullName">
                 <h3>Full Name</h3>
-                <p>{{userData?.fullName || 'Information not found'}}</p>
+                <p>{{userData?.fullName || 'Change Information'}}</p>
             </div>
             <div class="email">
                 <h3>Email</h3>
-                <p>{{userData?.email || 'Information not found'}}</p>
+                <p>{{userData?.email || 'Change Information'}}</p>
             </div>
             <div class="phone">
                 <h3>Phone Number</h3>
-                <p>{{userData?.phone || 'Information not found'}}</p>
+                <p>{{userData?.phone || 'Change Information'}}</p>
             </div>
             <div class="address">
                 <h3>Address</h3>
-                <p>{{userData?.address || 'Information not found'}}</p>
+                <p>{{userData?.address || 'Change Information'}}</p>
             </div>
             <button class="edit-btn" (click)="toggleEditMode()">EDIT</button>
         </div>
@@ -96,8 +96,11 @@
 
         <div class="user-offers">
             <h1>User offers</h1>
-            <div class="offers-container" *ngFor="let offer of userOffers">
-                <div class="offer">
+            <h2 class="no-offers" *ngIf="userOffers.length === 0">
+                You have no offers :(
+            </h2>
+            <div class="offers-container">
+                <div class="offer" *ngFor="let offer of userOffers">
                     <a routerLink="/offers/{{offer._id}}">
                         <div class="media">
                             <img src="{{offer.carImage}}" alt="">
@@ -109,7 +112,8 @@
                             <h5>{{offer.brand}} {{offer.model}}</h5>
                         </div>
                         <div class="divider"></div>
-                        <div class="typography">{{offer.createdDate}}, {{offer.fuelTypes}}, {{offer.mileage}} км.</div>
+                        <div class="typography">{{offer.createdDate}}, {{offer.fuelTypes}},
+                            {{offer.mileage}} км.</div>
                     </a>
                     <div class="card-footer">
                         <p>частно лице, {{offer.location}}</p>
