@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   Auth,
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
   updateProfile,
 } from '@angular/fire/auth';
@@ -10,8 +9,7 @@ import { User } from '../types/user';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UserDB } from '../types/userDB';
-import { FirebaseApp } from '@angular/fire/app';
-import { Database, push, ref, set, update } from '@angular/fire/database';
+import { Database, push, ref, update } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root',

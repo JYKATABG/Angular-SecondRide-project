@@ -44,12 +44,19 @@
     <div class="owner-info">
       <h2 class="user-type"><i class="fa-solid fa-user"></i>Частно лице</h2>
       <p class="city"><i class="fa-solid fa-location-dot"></i>{{offerDetails?.location}}</p>
-      <h3 class="phone-number"><i class="fa-solid fa-mobile"></i>0{{offerDetails?.phone}}</h3>
+      <h3 class="phone-number"><i class="fa-solid fa-mobile"></i>{{offerDetails?.phone}}</h3>
       <div class="divider"></div>
       <!-- IF USER ISN'T OWNER OF THE OFFER -->
-      <button class="save-button" *ngIf="!isOwner">
-        <i class="fa-solid fa-bookmark saved"></i>Save Offer
-      </button>
+      <ng-container *ngIf="isLoggedIn && !isOwner">
+        <button (click)="favouriteOffer()" class="save-button" *ngIf="canFavourite">
+          <i class="fa-solid fa-bookmark save"></i>Save Offer
+        </button>
+      </ng-container>
+      <ng-container *ngIf="isLoggedIn && !isOwner">
+        <button (click)="unFavouriteOffer()" class="saved-button" *ngIf="!canFavourite">
+          <i class="fa-solid fa-bookmark saved"></i>Offer Saved
+        </button>
+      </ng-container>
       <!-- IF USER IS OWNER OF THE OFFER -->
       <div class="owner-buttons" *ngIf="isOwner">
         <button routerLink="editOffer" class="edit-btn"><i class="fa-solid fa-pen"></i>Edit</button>

@@ -140,9 +140,21 @@
     background-color: #262626;
     color: #fff;
     font-size: 20px;
+    transition: 0.3s;
 }
 
-.owner-info .save-button i:hover {
+.owner-info .saved-button {
+    cursor: pointer;
+    padding: 10px 0;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    background-color: #262626;
+    color: #fff;
+    font-size: 20px;
+}
+
+.owner-info .saved-button i {
     color: orange;
 }
 

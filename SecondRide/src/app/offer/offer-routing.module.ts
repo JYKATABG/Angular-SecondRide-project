@@ -5,6 +5,7 @@ import { CurrentOfferComponent } from './current-offer/current-offer.component';
 import { NewOfferComponent } from './new-offer/new-offer.component';
 import { AuthActivate } from '../core/guards/auth.activate';
 import { EditOfferComponent } from './edit-offer/edit-offer.component';
+import { NotFoundComponent } from '../layouts/not-found/not-found.component';
 
 const routes: Routes = [
   {
