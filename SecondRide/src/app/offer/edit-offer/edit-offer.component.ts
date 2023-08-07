@@ -45,7 +45,7 @@ export class EditOfferComponent implements OnInit {
       color: ['', [Validators.required, Validators.minLength(3)]],
       phone: [
         '',
-        [Validators.required, Validators.maxLength(9), Validators.minLength(9)],
+        [Validators.required, Validators.pattern('(087)|(088)|(089)[0-9]{7}')],
       ],
       fuelTypes: ['', [Validators.required]],
       gearboxTypes: ['', [Validators.required]],

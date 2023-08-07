@@ -164,19 +164,17 @@
         </div>
         <div class="input-row">
             <label for="phone">Номер за връзка</label>
-            <input type="text" name="phone" id="phone" placeholder="+359" formControlName="phone" #phone
-                [ngModel]="originalData?.phone" />
+            <input type="tel" name="phone" id="phone" placeholder="+359" formControlName="phone" #phone
+                [ngModel]="originalData?.phone" pattern="(087)|(088)|(089)[0-9]{7}" />
             <!-- ERRORS -->
             <ng-container>
                 <div class="errors" *ngIf="form.get('phone')?.touched">
                     <p *ngIf="form.get('phone')?.errors?.['required']">
                         Phone is required
                     </p>
-                    <p *ngIf="form.get('phone')?.errors?.['minlength']?.['requiredLength']">
-                        Phone should be min 9 characters
-                    </p>
-                    <p *ngIf="form.get('phone')?.hasError('maxlength')">
-                        Phone should be max 9 characters
+
+                    <p *ngIf="form.get('phone')?.hasError('pattern')">
+                        Phone Number should start (087, 088, 089) and be 10 numbers
                     </p>
                     <!-- <p>Phone should start with 088 / 089</p> -->
                 </div>

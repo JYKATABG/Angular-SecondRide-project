@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { OfferService } from '../offer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Offer } from 'src/app/types/offer';
 import { getAuth, onAuthStateChanged } from '@angular/fire/auth';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/user/user.service';
-import { Database, onChildAdded, onValue, ref } from '@angular/fire/database';
-import { FavouriteOffer } from 'src/app/types/favouriteOffer';
 
 @Component({
   selector: 'app-current-offer',
@@ -21,13 +19,16 @@ export class CurrentOfferComponent implements OnInit {
   authUser = this.auth.currentUser;
   id: string = '';
   canFavourite: boolean = true;
+  savedOffers = [];
 
   constructor(
     private offerService: OfferService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private zone: NgZone,
+    private cdr: ChangeDetectorRef
   ) {}
 
   get isLoggedIn(): boolean {
@@ -48,11 +49,16 @@ export class CurrentOfferComponent implements OnInit {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         const uid = user.uid;
-        this.offerService.saveFavouriteOffer(this.id!, uid!).then((res) => {
+        this.offerService.saveFavouriteOffer(this.id!, uid!).subscribe((res) => {
           this.toastr.success(
             'Offer was successfully added to favourites',
             'Favourite offers'
           );
+          console.log(res);
+
+          // this.savedOffers.push(res);
+
+          this.cdr.detectChanges();
         });
       } else {
         console.log('User is signed out!');

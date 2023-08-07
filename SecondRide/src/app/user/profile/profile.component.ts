@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { getAuth, onAuthStateChanged } from '@angular/fire/auth';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { OfferService } from 'src/app/offer/offer.service';
 import { Offer } from 'src/app/types/offer';
+import { FavouriteOffer } from 'src/app/types/favouriteOffer';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +21,9 @@ export class ProfileComponent implements OnInit {
   isInvalid: boolean = false;
   userData: UserDB | any;
   userOffers: Offer[] = [];
+  userFavouriteOffers: FavouriteOffer[] = [];
+  favouriteOffers: Offer[] = [];
+  offersLikedByTheUser: Offer[] = [];
 
   constructor(
     private userService: UserService,
@@ -31,6 +35,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.checkAndUpdateUserInformation();
     this.checkAndUpdateOffersInformation();
+    this.checkAndUpdateFavouriteOffersInformation();
   }
 
   checkAndUpdateUserInformation() {
@@ -73,7 +78,51 @@ export class ProfileComponent implements OnInit {
               return offer._ownerId === uid;
             });
             this.userOffers = allUserOffers;
-            console.log(this.userOffers);
+          } else {
+            console.log('User is signed out!');
+            this.router.navigate(['/home']);
+          }
+        });
+      },
+      error: (err) => console.log(err),
+    });
+  }
+
+  checkAndUpdateFavouriteOffersInformation() {
+    this.offerService.getFavouriteOffers().subscribe({
+      next: (offers) => {
+        const offerValues = this.offerService.getOfferArrayValues(
+          Object.values(offers),
+          Object.keys(offers)
+        );
+
+        onAuthStateChanged(this.auth, (user) => {
+          if (user) {
+            const uid = user.uid;
+            const allUserOffers = offerValues.filter((offer) => {
+              return offer._ownerId === uid;
+            });
+            this.userFavouriteOffers = allUserOffers;
+
+            this.offerService.getAllOffers().subscribe((offer) => {
+              const allOffers = this.offerService.getArrayValues(
+                Object.values(offer),
+                Object.keys(offer)
+              );
+
+              this.favouriteOffers = [];
+
+              this.userFavouriteOffers.forEach((offer) => {
+                let id = offer._offerId;
+                const filterUserFavouriteOffers = allOffers.filter((x) => {
+                  return x._id === id;
+                });
+                this.favouriteOffers = this.favouriteOffers.concat(
+                  filterUserFavouriteOffers
+                );
+                console.log(this.favouriteOffers);
+              });
+            });
           } else {
             console.log('User is signed out!');
             this.router.navigate(['/home']);
