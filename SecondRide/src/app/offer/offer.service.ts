@@ -20,12 +20,28 @@ export class OfferService {
     private db: Database
   ) {}
 
-  createNewOffer(formData: object) {
-    this.httpClient
-      .post<Offer[]>(`${this.API_LINK}.json`, formData)
-      .subscribe((res) => {
-        this.router.navigate(['/offers']);
-      });
+  createNewOffer(formData: Offer) {
+    push(ref(this.db, 'offers/'), {
+      _ownerId: formData._ownerId,
+      carImage: formData.carImage,
+      createdDate: formData.createdDate,
+      brand: formData.brand,
+      model: formData.model,
+      engine: formData.engine,
+      price: formData.price,
+      horsepower: formData.horsepower,
+      mileage: formData.mileage,
+      location: formData.location,
+      color: formData.color,
+      phone: formData.phone,
+      fuelTypes: formData.fuelTypes,
+      gearboxTypes: formData.gearboxTypes,
+      categoryTypes: formData.categoryTypes,
+      doorsTypes: formData.doorsTypes,
+      descriptionArea: formData.descriptionArea,
+    }).then((res) => {
+      this.router.navigate(['/offers']);
+    });
   }
 
   getAllOffers() {
@@ -47,7 +63,7 @@ export class OfferService {
     return this.httpClient.delete(`${this.API_LINK}/${id}.json`);
   }
 
-  editOffer(id: string, changedData: object) {
+  editOffer(id: string, changedData: Offer) {
     return this.httpClient.put(`${this.API_LINK}/${id}.json`, changedData);
   }
 
@@ -56,7 +72,7 @@ export class OfferService {
   }
 
   saveFavouriteOffer(offerId: string, ownerId: string) {
-    return push(ref(this.db, 'favouriteOffers/'), {
+    return this.httpClient.post(`${this.API_FAVOURITEOFFERS_LINK}.json`, {
       _offerId: offerId,
       _ownerId: ownerId,
     });

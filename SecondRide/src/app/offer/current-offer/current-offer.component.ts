@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { OfferService } from '../offer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Offer } from 'src/app/types/offer';
@@ -27,7 +27,6 @@ export class CurrentOfferComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
-    private zone: NgZone,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -40,7 +39,13 @@ export class CurrentOfferComponent implements OnInit {
 
     this.offerService.getOneOffer(this.id).subscribe((offer) => {
       this.offerDetails = offer;
-      this.isOwner = offer?._ownerId === this.authUser?.uid;
+      onAuthStateChanged(this.auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+          this.isOwner = this.offerDetails?._ownerId === uid;
+          console.log(this.isOwner);
+        }
+      });
     });
     this.checkFavouriteUser();
   }
@@ -49,17 +54,17 @@ export class CurrentOfferComponent implements OnInit {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         const uid = user.uid;
-        this.offerService.saveFavouriteOffer(this.id!, uid!).subscribe((res) => {
-          this.toastr.success(
-            'Offer was successfully added to favourites',
-            'Favourite offers'
-          );
-          console.log(res);
+        this.offerService
+          .saveFavouriteOffer(this.id!, uid!)
+          .subscribe((res) => {
+            this.canFavourite = false;
+            this.toastr.success(
+              'Offer was successfully added to favourites',
+              'Favourite offers'
+            );
 
-          // this.savedOffers.push(res);
-
-          this.cdr.detectChanges();
-        });
+            this.cdr.detectChanges();
+          });
       } else {
         console.log('User is signed out!');
       }
@@ -87,6 +92,7 @@ export class CurrentOfferComponent implements OnInit {
           this.offerService
             .unFavouriteOffer(favouriteId as string)
             .then((res) => {
+              this.canFavourite = true;
               this.toastr.info(
                 'Offer was successfully removed from favourites',
                 'Favourite offers'

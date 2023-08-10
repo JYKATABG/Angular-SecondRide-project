@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { dateValidator } from 'src/app/shared/validators/date-validator';
 import { OfferService } from '../offer.service';
 import { getAuth } from '@firebase/auth';
+import { onAuthStateChanged } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { Offer } from 'src/app/types/offer';
 
 @Component({
   selector: 'app-new-offer',
@@ -12,46 +14,39 @@ import { getAuth } from '@firebase/auth';
 export class NewOfferComponent {
   isInvalid: boolean = false;
 
-  form = this.fb.group(
-    {
-      carImage: ['', [Validators.required]],
-      createdDate: ['', [Validators.required]],
-      brand: ['', [Validators.required, Validators.minLength(2)]],
-      model: ['', [Validators.required, Validators.minLength(2)]],
-      engine: ['', [Validators.required]],
-      price: ['', [Validators.required, Validators.min(2)]],
-      horsepower: [
-        '',
-        [Validators.required, Validators.min(0), Validators.maxLength(4)],
-      ],
-      mileage: ['', [Validators.required, Validators.min(0)]],
-      location: ['', [Validators.required, Validators.minLength(3)]],
-      color: ['', [Validators.required, Validators.minLength(3)]],
-      phone: [
-        '',
-        [Validators.required, Validators.pattern('(087)|(088)|(089)[0-9]{7}')],
-      ],
-      fuelTypes: ['', [Validators.required]],
-      gearboxTypes: ['', [Validators.required]],
-      categoryTypes: ['', [Validators.required]],
-      doorsTypes: ['', [Validators.required]],
-      descriptionArea: ['', [Validators.required]],
-    },
-    {
-      validators: [dateValidator('createdDate')],
-    }
-  );
+  form = this.fb.group({
+    carImage: ['', [Validators.required]],
+    createdDate: ['', [Validators.required]],
+    brand: ['', [Validators.required, Validators.minLength(2)]],
+    model: ['', [Validators.required, Validators.minLength(2)]],
+    engine: ['', [Validators.required]],
+    price: ['', [Validators.required, Validators.min(2)]],
+    horsepower: [
+      '',
+      [Validators.required, Validators.min(0), Validators.maxLength(4)],
+    ],
+    mileage: ['', [Validators.required, Validators.min(0)]],
+    location: ['', [Validators.required, Validators.minLength(3)]],
+    color: ['', [Validators.required, Validators.minLength(3)]],
+    phone: [
+      '',
+      [Validators.required, Validators.pattern('(087)|(088)|(089)[0-9]{7}')],
+    ],
+    fuelTypes: ['', [Validators.required]],
+    gearboxTypes: ['', [Validators.required]],
+    categoryTypes: ['', [Validators.required]],
+    doorsTypes: ['', [Validators.required]],
+    descriptionArea: ['', [Validators.required]],
+  });
 
-  constructor(private fb: FormBuilder, private offerService: OfferService) {}
+  constructor(
+    private fb: FormBuilder,
+    private offerService: OfferService,
+    private router: Router
+  ) {}
   auth = getAuth();
-  user = this.auth.currentUser;
 
   createOffer() {
-    if (this.form.invalid) {
-      this.isInvalid = true;
-      return;
-    }
-
     const {
       carImage,
       createdDate,
@@ -71,25 +66,40 @@ export class NewOfferComponent {
       descriptionArea,
     } = this.form.value;
 
-    this.offerService.createNewOffer({
-      carImage,
-      createdDate,
-      brand,
-      model,
-      engine,
-      price,
-      horsepower,
-      mileage,
-      location,
-      color,
-      phone,
-      fuelTypes,
-      gearboxTypes,
-      categoryTypes,
-      doorsTypes,
-      descriptionArea,
-      _ownerId: this.user?.uid,
+    onAuthStateChanged(this.auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log(uid);
+        if (this.form.invalid) {
+          this.isInvalid = true;
+          return;
+        }
+
+        this.offerService.createNewOffer({
+          _id: '',
+          _ownerId: uid,
+          carImage: carImage as string,
+          createdDate: createdDate as unknown as Date,
+          brand: brand as string,
+          model: model as string,
+          engine: engine as string,
+          price: price as unknown as number,
+          horsepower: horsepower as unknown as number,
+          mileage: mileage as unknown as number,
+          location: location as string,
+          color: color as string,
+          phone: phone as string,
+          fuelTypes: fuelTypes as string,
+          gearboxTypes: gearboxTypes as string,
+          categoryTypes: categoryTypes as string,
+          doorsTypes: doorsTypes as string,
+          descriptionArea: descriptionArea as string,
+        });
+        this.form.reset();
+      } else {
+        console.log('User is signed out!');
+        this.router.navigate(['/home']);
+      }
     });
-    this.form.reset();
   }
 }
