@@ -120,7 +120,6 @@ export class ProfileComponent implements OnInit {
                 this.favouriteOffers = this.favouriteOffers.concat(
                   filterUserFavouriteOffers
                 );
-                console.log(this.favouriteOffers);
               });
             });
           } else {

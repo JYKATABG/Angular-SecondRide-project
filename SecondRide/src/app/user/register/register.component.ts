@@ -37,7 +37,6 @@ export class RegisterComponent {
       email: value.email,
       address: '',
       phone: '',
-      favouriteOffers: [''],
     });
     this.router.navigate(['/home']);
   }

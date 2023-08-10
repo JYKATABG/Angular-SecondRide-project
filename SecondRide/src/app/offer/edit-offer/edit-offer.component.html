@@ -28,9 +28,6 @@
                     <p *ngIf="form.get('createdDate')?.errors?.['required']">
                         Date is required
                     </p>
-                    <p *ngIf="form.get('createdDate')?.errors?.['dateValidator']">
-                        Date should be less than 2023
-                    </p>
                     <p *ngIf="form.get('createdDate')?.errors?.['pattern']">
                         Number should start with 088/089
                     </p>

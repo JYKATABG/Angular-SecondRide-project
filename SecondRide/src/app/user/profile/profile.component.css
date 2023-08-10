@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     gap: 2em;
-    margin-bottom: 20em;
+    /* margin-bottom: 20em; */
 }
 
 .user-info .username {
@@ -349,6 +349,10 @@
     border-radius: 15px;
     height: 551px;
     width: 900px;
+}
+
+.user-favourite-offers .offers-container .offer:hover {
+    transform: scale(1.05);
 }
 
 .user-favourite-offers h1 {

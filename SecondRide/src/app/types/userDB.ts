@@ -6,5 +6,4 @@ export interface UserDB {
   email: string;
   phone: string;
   address: string;
-  favouriteOffers: string[];
 }

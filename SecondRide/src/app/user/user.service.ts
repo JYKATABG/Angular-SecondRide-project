@@ -55,7 +55,6 @@ export class UserService {
           email: form.email,
           phone: form.phone,
           address: form.address,
-          favouriteOffers: [''],
         });
       })
       .catch((err) => {
