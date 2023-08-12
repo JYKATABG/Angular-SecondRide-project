@@ -110,3 +110,52 @@
 .submit-btn:hover {
     background-color: #262626;
 }
+
+@media (width < 600px) {
+    .container {
+        flex-direction: column;
+        gap: 3em;
+    }
+
+    .container .contact-heading h1 {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .container .contact-heading p {
+        font-size: 18px;
+        padding: 5px;
+    }
+
+    .contact-heading .customer-support h2 {
+        font-size: 18px;
+    }
+
+    .container .contact-heading {
+        width: 350px;
+        align-items: center;
+        gap: 3em;
+        justify-content: center;
+        margin: 0 5px;
+    }
+
+    .container form {
+        width: 350px;
+    }
+
+    form .input-container {
+        flex-direction: column;
+    }
+
+    form .input-container input {
+        border: 1px solid #000;
+    }
+
+    form .textarea-data {
+        width: 300px;
+    }
+
+    .textarea-data textarea {
+        font-size: 15px;
+    }
+}

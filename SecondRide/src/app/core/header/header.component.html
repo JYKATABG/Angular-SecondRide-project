@@ -9,6 +9,8 @@
       <li><a routerLink="/offers">Catalog</a></li>
       <li><a routerLink="/contact-us">Contact Us</a></li>
     </ul>
+    <div class="close-button">
+    </div>
   </nav>
   <!-- GUEST LINKS -->
   <div class="guest-links" *ngIf="!isLoggedIn">
@@ -21,19 +23,13 @@
   <div class="user-links" *ngIf="isLoggedIn">
     <ul>
       <li>
-        <a routerLink="/profile" class="user-btn"
-          ><i class="fa-solid fa-user"></i
-        ></a>
+        <a routerLink="/profile" class="user-btn"><i class="fa-solid fa-user"></i></a>
       </li>
       <li>
-        <a routerLink="/add-offer" class="new-offer-btn"
-          ><i class="fa-solid fa-plus"></i
-        ></a>
+        <a routerLink="/add-offer" class="new-offer-btn"><i class="fa-solid fa-plus"></i></a>
       </li>
       <li>
-        <a href="#" (click)="logout()" class="logout-btn"
-          ><i class="fa-solid fa-arrow-right-from-bracket"></i
-        ></a>
+        <a href="#" (click)="logout()" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
       </li>
     </ul>
   </div>

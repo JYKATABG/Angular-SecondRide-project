@@ -119,3 +119,29 @@ form .all-selects {
     transform: scale(1.1);
     opacity: 0.9;
 }
+
+@media (width < 600px) {
+
+    .container .heading h1 {
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .all-selects {
+        flex-direction: column;
+    }
+
+    .all-selects .input-row select {
+        width: 250px;
+    }
+
+    .description {
+        margin: 0 auto;
+        width: 350px;
+    }
+
+    .description textarea {
+        width: 350px;
+    }
+
+}

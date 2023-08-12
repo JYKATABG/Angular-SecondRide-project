@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
     margin: 4em auto;
     background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
     padding: 1em;
@@ -13,8 +14,8 @@
 }
 
 .container .profile-img {
-    margin: 2em 0;
-    margin: -70px 0 2em 0;
+    position: absolute;
+    top: -50px;
 }
 
 .container .profile-img i {
@@ -104,4 +105,14 @@ form .error-msg p {
     padding: 0;
     color: red;
     display: inline;
+}
+
+@media (width < 600px) {
+    .container {
+        width: 380px;
+    }
+
+    form .input-data {
+        width: 300px;
+    }
 }

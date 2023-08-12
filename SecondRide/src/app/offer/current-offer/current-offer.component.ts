@@ -43,7 +43,6 @@ export class CurrentOfferComponent implements OnInit {
         if (user) {
           const uid = user.uid;
           this.isOwner = this.offerDetails?._ownerId === uid;
-          console.log(this.isOwner);
         }
       });
     });

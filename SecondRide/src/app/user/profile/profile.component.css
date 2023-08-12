@@ -387,3 +387,29 @@
     cursor: pointer;
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.5);
 }
+
+@media (width < 600px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-section .user-avatar,
+    .left-section .user-favourite-offers,
+    .right-section .user-details,
+    .right-section .user-offers,
+    .right-section .user-details-form {
+        width: 400px;
+    }
+
+    .left-section .user-favourite-offers {
+        margin-bottom: 0;
+    }
+
+    .right-section form div {
+        flex-direction: column;
+    }
+
+    .right-section form div input {
+        width: 350px;
+    }
+}

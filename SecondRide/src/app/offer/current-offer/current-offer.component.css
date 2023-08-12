@@ -59,7 +59,7 @@
     margin: 10px 0;
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
-    padding: 10px 0;
+    padding: 10px 10px;
 }
 
 .offer-information .car-information {
@@ -202,4 +202,81 @@
     border: 1px solid #000;
     color: #fff;
     transform: scale(1.1);
+}
+
+@media (width < 600px) {
+
+    .back-btn {
+        margin: 1em 0 2em 1em;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .container .offer-container {
+        flex-direction: column;
+        width: 300px;
+    }
+
+    .container .heading {
+        flex-direction: column;
+        gap: 1em;
+        font-size: 20px;
+    }
+
+    .offer-information {
+        width: 400px;
+    }
+
+    .offer-information .car-info-heading {
+        font-size: 25px;
+    }
+
+    .offer-information .bold-info {
+        font-size: 16px;
+    }
+
+    .offer-information .car-information .left-side p {
+        font-size: 16px;
+    }
+
+    .offer-information .media {
+        width: 400px;
+    }
+
+    .offer-information .media img {
+        width: 400px;
+        margin: 0 auto;
+    }
+
+    .offer-information .car-information {
+        width: 400px;
+        justify-content: space-between;
+    }
+
+    .offer-information .description-container {
+        width: 400px;
+    }
+
+    .offer-information p {
+        max-width: 23em;
+        margin: 0 auto;
+    }
+
+    .owner-info {
+        margin-bottom: 1em;
+        align-self: center;
+        width: 400px;
+    }
+
+    .owner-buttons button {
+        padding: 0.8em 1em;
+        width: 150px;
+    }
+
+    .owner-buttons .delete-btn {
+        width: 200px;
+    }
 }

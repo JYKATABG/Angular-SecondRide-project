@@ -54,3 +54,22 @@
     padding-bottom: 1em;
     font-size: 18px;
 }
+
+@media (width < 600px) {
+
+    .container .header-img {
+        width: 90%;
+    }
+
+    .container .header-img img {
+        width: 300px;
+    }
+
+    .text-container .all-parahgraphs {
+        flex-direction: column;
+    }
+
+    .all-parahgraphs .single-paragraph p {
+        text-align: center;
+    }
+}
