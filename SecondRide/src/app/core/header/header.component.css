@@ -146,4 +146,8 @@ header .logo img {
         flex-direction: column;
         gap: 1em;
     }
+
+    .guest-links {
+        margin: 10px 0;
+    }
 }

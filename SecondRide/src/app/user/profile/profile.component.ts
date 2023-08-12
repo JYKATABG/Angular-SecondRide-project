@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
             this.userId = this.userData._id;
           } else {
             console.log('User is signed out!');
-            this.router.navigate(['/home']);
+            this.router.navigate(['/login']);
           }
         });
       },
@@ -80,7 +80,6 @@ export class ProfileComponent implements OnInit {
             this.userOffers = allUserOffers;
           } else {
             console.log('User is signed out!');
-            this.router.navigate(['/home']);
           }
         });
       },
@@ -124,7 +123,6 @@ export class ProfileComponent implements OnInit {
             });
           } else {
             console.log('User is signed out!');
-            this.router.navigate(['/home']);
           }
         });
       },

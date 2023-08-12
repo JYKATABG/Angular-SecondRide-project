@@ -111,6 +111,14 @@
     background-color: #262626;
 }
 
+.select-errors {
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
 @media (width < 600px) {
     .container {
         flex-direction: column;

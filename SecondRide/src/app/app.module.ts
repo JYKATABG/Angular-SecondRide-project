@@ -19,6 +19,7 @@ import { OffersCatalogComponent } from './offers-catalog/offers-catalog.componen
 import { OfferModule } from './offer/offer.module';
 import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
     CoreModule,
     HttpClientModule,
     UserModule,
+    FormsModule,
     OfferModule,
     SharedModule,
     AppRoutingModule,

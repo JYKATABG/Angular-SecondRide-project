@@ -8,20 +8,24 @@
             <h3>Phone: +1234567890</h3>
         </div>
     </div>
-    <form>
+    <form #cotactUsForm="ngForm" (ngSubmit)="submitForm(cotactUsForm)">
         <div class="input-container">
             <div class="input-data">
                 <label for="email">Email:</label>
-                <input type="email" name="email" placeholder="your email...">
+                <input type="email" name="email" placeholder="your email..." ngModel required email>
             </div>
             <div class="input-data">
                 <label for="name">Name:</label>
-                <input type="text" name="name" placeholder="your name...">
+                <input type="text" name="name" placeholder="your name..." ngModel required>
             </div>
         </div>
         <div class="textarea-data">
             <label for="help">What can we help you with?</label>
-            <textarea name="support" id="support" rows="5" cols="40"></textarea>
+            <textarea name="support" id="support" rows="5" cols="40" ngModel></textarea>
+        </div>
+
+        <div class="select-errors" *ngIf="isInvalid">
+            <p>All fields are required</p>
         </div>
 
         <button type="submit" class="submit-btn">Submit</button>

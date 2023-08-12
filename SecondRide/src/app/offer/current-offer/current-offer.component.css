@@ -223,7 +223,15 @@
     .container .heading {
         flex-direction: column;
         gap: 1em;
-        font-size: 20px;
+        font-size: 25px;
+    }
+
+    .heading .price {
+        font-size: 25px;
+    }
+
+    .container .heading h1 {
+        font-size: 30px;
     }
 
     .offer-information {
