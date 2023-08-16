@@ -10,8 +10,20 @@ import { Offer } from '../types/offer';
 export class OffersCatalogComponent implements OnInit {
   appOffers: Offer[] = [];
   offerId: String = '';
+  _filterText: string = '';
+  filteredOffers: Offer[] = [];
+  noMatchedOffers: string = '';
 
   constructor(private offerService: OfferService) {}
+
+  get filterText() {
+    return this._filterText;
+  }
+
+  set filterText(value: string) {
+    this._filterText = value;
+    this.filteredOffers = this.filterData(value);
+  }
 
   ngOnInit(): void {
     this.offerService.getAllOffers().subscribe({
@@ -21,8 +33,19 @@ export class OffersCatalogComponent implements OnInit {
           Object.keys(offers)
         );
         this.appOffers = offerValues;
+        this.filteredOffers = this.appOffers;
       },
       error: (err) => console.log(err),
     });
+  }
+
+  filterData(searchData: string) {
+    if (this.appOffers.length === 0 || this.filterText === '') {
+      return this.appOffers;
+    } else {
+      return this.appOffers.filter((offer) => {
+        return offer.brand.toLowerCase().includes(searchData.toLowerCase());
+      });
+    }
   }
 }

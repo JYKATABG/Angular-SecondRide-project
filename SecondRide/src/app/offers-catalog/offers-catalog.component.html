@@ -1,11 +1,15 @@
 <div class="container">
   <div class="search-bar">
     <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="search" placeholder="Search car..." />
+    <input type="text" placeholder="Search car..." [(ngModel)]="filterText" />
+  </div>
+
+  <div class="offers-counter" *ngIf="filteredOffers.length === 0">
+    <p>No matches for {{filterText}}</p>
   </div>
 
   <div class="cards-container">
-    <div class="card" *ngFor="let offer of appOffers">
+    <div class="card" *ngFor="let offer of filteredOffers">
       <a routerLink="{{offer._id}}">
         <div class="media">
           <img src="{{ offer.carImage }}" alt="" />

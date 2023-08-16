@@ -115,6 +115,28 @@
     font-weight: bold;
 }
 
+.search-btn {
+    cursor: pointer;
+    padding: 0.8em 1.5em;
+    outline: none;
+    border: 1px solid #000;
+    background-color: black;
+    color: #fff;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.search-btn:hover {
+    background-color: transparent;
+    color: #000;
+}
+
+.offers-counter {
+    font-size: 25px;
+    text-align: center;
+    margin: 2em 2em;
+}
+
 @media (width < 600px) {
     .container .search-bar {
         width: 350px;

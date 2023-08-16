@@ -24,6 +24,6 @@ SecondHand is project build with Angular. It contains all CRUD operations that a
 7. Route Guards
 8. Authorization
 9. Form validations
-10. Search and Filtering (in development)
+10. Working search bar
 11. Notifications with ngx-toastr
 12. Responsive design (only phone)

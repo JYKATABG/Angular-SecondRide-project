@@ -116,7 +116,10 @@ export class EditOfferComponent implements OnInit {
             );
           });
       } else {
-        console.log('User is signed out!');
+        this.toastr.error(
+          'You need to be loged in to access this page',
+          'Access Denied'
+        );
         this.router.navigate(['/home']);
       }
     });
