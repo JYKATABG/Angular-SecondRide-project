@@ -69,7 +69,6 @@ export class NewOfferComponent {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         const uid = user.uid;
-        console.log(uid);
         if (this.form.invalid) {
           this.isInvalid = true;
           return;

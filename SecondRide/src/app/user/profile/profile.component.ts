@@ -55,7 +55,7 @@ export class ProfileComponent implements OnInit {
             this.userData = correctProfile[0];
             this.userId = this.userData._id;
           } else {
-            console.log('User is signed out!');
+            // console.log('User is signed out!');
             this.router.navigate(['/login']);
           }
         });
@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
             });
             this.userOffers = allUserOffers;
           } else {
-            console.log('User is signed out!');
+            // console.log('User is signed out!');
           }
         });
       },
@@ -122,7 +122,10 @@ export class ProfileComponent implements OnInit {
               });
             });
           } else {
-            console.log('User is signed out!');
+            this.toastr.error(
+              'You need to be loged in to access this page',
+              'Access Denied'
+            );
           }
         });
       },

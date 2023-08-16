@@ -4,13 +4,12 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './layouts/about/about.component';
 import { ContactUsComponent } from './layouts/contact-us/contact-us.component';
 import { NotFoundComponent } from './layouts/not-found/not-found.component';
-import { OffersCatalogComponent } from './offers-catalog/offers-catalog.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/home',
+    redirectTo: 'home',
   },
   {
     path: 'home',

@@ -29,7 +29,7 @@ const routes: Routes = [
   {
     path: 'add-offer',
     component: NewOfferComponent,
-    // canActivate: [AuthActivate],
+    canActivate: [AuthActivate],
   },
 ];
 
