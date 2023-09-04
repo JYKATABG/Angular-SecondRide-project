@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { getAuth, onAuthStateChanged } from '@angular/fire/auth';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
@@ -8,13 +8,14 @@ import { Router } from '@angular/router';
 import { OfferService } from 'src/app/offer/offer.service';
 import { Offer } from 'src/app/types/offer';
 import { FavouriteOffer } from 'src/app/types/favouriteOffer';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   auth = getAuth();
   userId: string = '';
   isEditMode: boolean = false;
@@ -24,6 +25,10 @@ export class ProfileComponent implements OnInit {
   userFavouriteOffers: FavouriteOffer[] = [];
   favouriteOffers: Offer[] = [];
   offersLikedByTheUser: Offer[] = [];
+  // Subscriptions
+  updateUserInfoSub: Subscription | undefined;
+  updateOffersInfoSub: Subscription | undefined;
+  updateFavouriteOffersInfoSub: Subscription | undefined;
 
   constructor(
     private userService: UserService,
@@ -39,7 +44,7 @@ export class ProfileComponent implements OnInit {
   }
 
   checkAndUpdateUserInformation() {
-    this.userService.getAllUsers().subscribe({
+    this.updateUserInfoSub = this.userService.getAllUsers().subscribe({
       next: (users) => {
         const userValues = this.userService.getArrayValues(
           Object.values(users),
@@ -65,7 +70,7 @@ export class ProfileComponent implements OnInit {
   }
 
   checkAndUpdateOffersInformation() {
-    this.offerService.getAllOffers().subscribe({
+    this.updateOffersInfoSub = this.offerService.getAllOffers().subscribe({
       next: (offers) => {
         const offerValues = this.offerService.getArrayValues(
           Object.values(offers),
@@ -88,49 +93,57 @@ export class ProfileComponent implements OnInit {
   }
 
   checkAndUpdateFavouriteOffersInformation() {
-    this.offerService.getFavouriteOffers().subscribe({
-      next: (offers) => {
-        const offerValues = this.offerService.getOfferArrayValues(
-          Object.values(offers),
-          Object.keys(offers)
-        );
+    this.updateFavouriteOffersInfoSub = this.offerService
+      .getFavouriteOffers()
+      .subscribe({
+        next: (offers) => {
+          const offerValues = this.offerService.getOfferArrayValues(
+            Object.values(offers),
+            Object.keys(offers)
+          );
 
-        onAuthStateChanged(this.auth, (user) => {
-          if (user) {
-            const uid = user.uid;
-            const allUserOffers = offerValues.filter((offer) => {
-              return offer._ownerId === uid;
-            });
-            this.userFavouriteOffers = allUserOffers;
-
-            this.offerService.getAllOffers().subscribe((offer) => {
-              const allOffers = this.offerService.getArrayValues(
-                Object.values(offer),
-                Object.keys(offer)
-              );
-
-              this.favouriteOffers = [];
-
-              this.userFavouriteOffers.forEach((offer) => {
-                let id = offer._offerId;
-                const filterUserFavouriteOffers = allOffers.filter((x) => {
-                  return x._id === id;
-                });
-                this.favouriteOffers = this.favouriteOffers.concat(
-                  filterUserFavouriteOffers
-                );
+          onAuthStateChanged(this.auth, (user) => {
+            if (user) {
+              const uid = user.uid;
+              const allUserOffers = offerValues.filter((offer) => {
+                return offer._ownerId === uid;
               });
-            });
-          } else {
-            this.toastr.error(
-              'You need to be loged in to access this page',
-              'Access Denied'
-            );
-          }
-        });
-      },
-      error: (err) => console.log(err),
-    });
+              this.userFavouriteOffers = allUserOffers;
+
+              this.offerService.getAllOffers().subscribe((offer) => {
+                const allOffers = this.offerService.getArrayValues(
+                  Object.values(offer),
+                  Object.keys(offer)
+                );
+
+                this.favouriteOffers = [];
+
+                this.userFavouriteOffers.forEach((offer) => {
+                  let id = offer._offerId;
+                  const filterUserFavouriteOffers = allOffers.filter((x) => {
+                    return x._id === id;
+                  });
+                  this.favouriteOffers = this.favouriteOffers.concat(
+                    filterUserFavouriteOffers
+                  );
+                });
+              });
+            } else {
+              this.toastr.error(
+                'You need to be loged in to access this page',
+                'Access Denied'
+              );
+            }
+          });
+        },
+        error: (err) => console.log(err),
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.updateUserInfoSub?.unsubscribe();
+    this.updateOffersInfoSub?.unsubscribe();
+    this.updateFavouriteOffersInfoSub?.unsubscribe();
   }
 
   toggleEditMode(): void {

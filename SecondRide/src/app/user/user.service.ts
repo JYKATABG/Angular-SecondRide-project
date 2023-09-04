@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
   Auth,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  getAuth,
   signInWithEmailAndPassword,
+  signInWithPopup,
   updateProfile,
 } from '@angular/fire/auth';
 import { User } from '../types/user';
@@ -10,6 +13,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UserDB } from '../types/userDB';
 import { Database, push, ref, update } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -62,6 +66,14 @@ export class UserService {
       });
   }
 
+  registerGoogleAccount(): void {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    signInWithPopup(auth, provider).then((res) => {
+      console.log(res);
+    });
+  }
+
   login(email: string, password: string) {
     signInWithEmailAndPassword(this.auth, email, password)
       .then((result) => {
@@ -79,8 +91,8 @@ export class UserService {
     localStorage.removeItem(this.USER_KEY);
   }
 
-  getAllUsers() {
-    return this.httpClient.get(`${this.USER_API_URL}.json`);
+  getAllUsers(): Observable<UserDB[]> {
+    return this.httpClient.get<UserDB[]>(`${this.USER_API_URL}.json`)
   }
 
   editUserData(id: string, formData: UserDB) {
