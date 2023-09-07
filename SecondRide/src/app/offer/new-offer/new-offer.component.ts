@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { OfferService } from '../offer.service';
 import { getAuth } from '@firebase/auth';
 import { onAuthStateChanged } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Offer } from 'src/app/types/offer';
+import { UserService } from 'src/app/user/user.service';
+import { UserDB } from 'src/app/types/userDB';
 
 @Component({
   selector: 'app-new-offer',
   templateUrl: './new-offer.component.html',
   styleUrls: ['./new-offer.component.css'],
 })
-export class NewOfferComponent {
+export class NewOfferComponent implements OnInit {
   isInvalid: boolean = false;
+  userData: UserDB | any;
+  userId: string = '';
+  isPhoneAdded: boolean = false;
 
   form = this.fb.group({
     carImage: ['', [Validators.required]],
@@ -28,10 +33,7 @@ export class NewOfferComponent {
     mileage: ['', [Validators.required, Validators.min(0)]],
     location: ['', [Validators.required, Validators.minLength(3)]],
     color: ['', [Validators.required, Validators.minLength(3)]],
-    phone: [
-      '',
-      [Validators.required, Validators.pattern('(087)|(088)|(089)[0-9]{7}')],
-    ],
+    phone: ['', [Validators.required, Validators.pattern(/08[7-9][0-9]{7}/g)]],
     fuelTypes: ['', [Validators.required]],
     gearboxTypes: ['', [Validators.required]],
     categoryTypes: ['', [Validators.required]],
@@ -42,11 +44,61 @@ export class NewOfferComponent {
   constructor(
     private fb: FormBuilder,
     private offerService: OfferService,
+    private userService: UserService,
     private router: Router
   ) {}
   auth = getAuth();
 
+  ngOnInit(): void {
+    this.checkAndUpdateUserInformation();
+  }
+
+  checkAndUpdateUserInformation() {
+    this.userService.getAllUsers().subscribe({
+      next: (users) => {
+        const userValues = this.userService.getArrayValues(
+          Object.values(users),
+          Object.keys(users)
+        );
+        onAuthStateChanged(this.auth, (user) => {
+          if (user) {
+            const uid = user.uid;
+            const arrayUsers = Array(userValues);
+            const correctProfile = Object.values(arrayUsers[0]).filter((x) => {
+              return x._userId === uid;
+            });
+            this.userData = correctProfile[0];
+            if (this.userData.phone !== '') {
+              this.isPhoneAdded = true;
+            }
+          } else {
+            // console.log('User is signed out!');
+            this.router.navigate(['/login']);
+          }
+        });
+      },
+      error: (err) => console.log(err),
+    });
+  }
+
+  removeRequiredValidator(controlName: string) {
+    const control = this.form.get(controlName);
+    if (control) {
+      control.setValidators([]);
+      control.updateValueAndValidity();
+    }
+  }
+
   createOffer() {
+    if (this.isPhoneAdded) {
+      this.removeRequiredValidator('phone');
+    }
+
+    if (this.form.invalid) {
+      this.isInvalid = true;
+      return;
+    }
+
     const {
       carImage,
       createdDate,
@@ -66,13 +118,11 @@ export class NewOfferComponent {
       descriptionArea,
     } = this.form.value;
 
+    const phoneOption = this.isPhoneAdded ? this.userData.phone : phone;
+
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         const uid = user.uid;
-        if (this.form.invalid) {
-          this.isInvalid = true;
-          return;
-        }
 
         this.offerService.createNewOffer({
           _id: '',
@@ -87,7 +137,7 @@ export class NewOfferComponent {
           mileage: mileage as unknown as number,
           location: location as string,
           color: color as string,
-          phone: phone as string,
+          phone: phoneOption as string,
           fuelTypes: fuelTypes as string,
           gearboxTypes: gearboxTypes as string,
           categoryTypes: categoryTypes as string,

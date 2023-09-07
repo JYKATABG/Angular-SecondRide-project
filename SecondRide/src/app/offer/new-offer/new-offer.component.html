@@ -152,10 +152,9 @@
         </div>
       </ng-container>
     </div>
-    <div class="input-row">
+    <div class="input-row" *ngIf="!isPhoneAdded">
       <label for="phone">Номер за връзка</label>
-      <input type="tel" name="phone" id="phone" placeholder="+359" pattern="(087)|(088)|(089)[0-9]{7}"
-        formControlName="phone" />
+      <input type="tel" name="phone" id="phone" formControlName="phone" />
       <!-- ERRORS -->
       <ng-container>
         <div class="errors" *ngIf="form.get('phone')?.touched">

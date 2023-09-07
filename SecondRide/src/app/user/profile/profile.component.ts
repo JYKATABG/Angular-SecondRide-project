@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { getAuth, onAuthStateChanged } from '@angular/fire/auth';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
@@ -58,6 +58,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
               return x._userId === uid;
             });
             this.userData = correctProfile[0];
+            console.log(this.userData);
+
             this.userId = this.userData._id;
           } else {
             // console.log('User is signed out!');
