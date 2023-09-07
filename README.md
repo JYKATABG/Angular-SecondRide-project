@@ -7,8 +7,9 @@ SecondHand is project build with Angular. It contains all CRUD operations that a
 1. Download the main folder - SecondRide.
 2. Open the SecondRide folder (where are all the files)
 3. Install notifications library by typing - npm install ngx-toastr --save
-4. Open it with vscode and type ng s --o in the terminal (for this operation you will need Angular CLI).
-5. The project will start and its ready to use.
+4. Install calendar time format library by typing - npm install moment --save
+5. Open it with vscode and type ng s --o in the terminal (for this operation you will need Angular CLI).
+6. The project will start and its ready to use.
 
 # All feautures
 
@@ -26,4 +27,5 @@ SecondHand is project build with Angular. It contains all CRUD operations that a
 9. Form validations
 10. Working search bar
 11. Notifications with ngx-toastr
-12. Responsive design (only phone)
+12. Formatted calendar time with momentJS
+13. Responsive design (only phone)
