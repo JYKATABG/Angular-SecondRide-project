@@ -21,7 +21,7 @@
           <h5>{{offer.brand}} {{offer.model}} {{offer.engine}}</h5>
         </div>
         <div class="divider"></div>
-        <div class="typography">{{offer.createdDate}}, {{offer.fuelTypes}}, {{offer.mileage}} км.</div>
+        <div class="typography">{{offer.createdDate | elapsedTime}} | {{offer.fuelTypes}} | {{offer.mileage}} км.</div>
         <div class="card-info">
           <p class="info-text">{{offer.descriptionArea}}</p>
         </div>

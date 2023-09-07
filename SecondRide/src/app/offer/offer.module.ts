@@ -6,9 +6,10 @@ import { OfferRoutingModule } from './offer-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OfferService } from './offer.service';
 import { EditOfferComponent } from './edit-offer/edit-offer.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [CurrentOfferComponent, NewOfferComponent, EditOfferComponent],
-  imports: [CommonModule, OfferRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, OfferRoutingModule, ReactiveFormsModule, SharedModule],
 })
 export class OfferModule {}

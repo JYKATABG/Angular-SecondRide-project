@@ -39,6 +39,7 @@ export class CurrentOfferComponent implements OnInit {
 
     this.offerService.getOneOffer(this.id).subscribe((offer) => {
       this.offerDetails = offer;
+
       onAuthStateChanged(this.auth, (user) => {
         if (user) {
           const uid = user.uid;
